@@ -74,7 +74,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_spfow"]
-radius = 6.0
+radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ikl0w"]
 radius = 8.0
@@ -83,6 +83,7 @@ radius = 8.0
 collision_layer = 4
 script = ExtResource("1_5k0mc")
 SPEED = 40.0
+WEIGHT = 10.0
 
 [node name="Pivot" type="Node2D" parent="." unique_id=347418000]
 
@@ -94,13 +95,15 @@ autoplay = "idle"
 frame_progress = 0.348982
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=959236999]
-position = Vector2(0, -6)
+position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_spfow")
 
-[node name="killzone" parent="." unique_id=1164998815 instance=ExtResource("2_wgs4n")]
+[node name="KillAread2D" parent="." unique_id=1164998815 instance=ExtResource("2_wgs4n")]
+collision_layer = 4
+script = null
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone" unique_id=829607200]
-position = Vector2(0, -6)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillAread2D" unique_id=829607200]
+position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_ikl0w")
 debug_color = Color(0.913616, 0.0984373, 0.671985, 0.42)
 
@@ -111,3 +114,5 @@ target_position = Vector2(10, 0)
 [node name="RayCast2D2" type="RayCast2D" parent="." unique_id=340823885]
 position = Vector2(0, -6)
 target_position = Vector2(-10, 0)
+
+[connection signal="body_entered" from="KillAread2D" to="." method="_on_killzone_body_entered"]

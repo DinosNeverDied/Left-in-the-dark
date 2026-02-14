@@ -134,7 +134,6 @@ radius = 6.0
 
 [node name="Player" type="CharacterBody2D" unique_id=538864502]
 z_index = 5
-position = Vector2(18, 108)
 collision_layer = 2
 script = ExtResource("1_qgb13")
 
