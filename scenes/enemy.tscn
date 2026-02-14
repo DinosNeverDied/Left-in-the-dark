@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://cop0bc0c7rxu1"]
+[gd_scene format=3 uid="uid://cop0bc0c7rxu1"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_5k0mc"]
+[ext_resource type="Script" uid="uid://c8qntwbu76dd2" path="res://scripts/enemy.gd" id="1_5k0mc"]
 [ext_resource type="Texture2D" uid="uid://b20lfl6ix6o1q" path="res://assets/spritesandtiles/knightspritesheet.png" id="1_v2p4v"]
 [ext_resource type="PackedScene" uid="uid://cqseq1rcfs8q" path="res://scenes/killzone.tscn" id="2_wgs4n"]
 
@@ -79,31 +79,35 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ikl0w"]
 radius = 8.0
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="enemy" type="CharacterBody2D" unique_id=609484323]
+collision_layer = 4
 script = ExtResource("1_5k0mc")
+SPEED = 40.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Pivot" type="Node2D" parent="." unique_id=347418000]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=102543008]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_aohpx")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.348982
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=959236999]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_spfow")
 
-[node name="killzone" parent="." instance=ExtResource("2_wgs4n")]
+[node name="killzone" parent="." unique_id=1164998815 instance=ExtResource("2_wgs4n")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone" unique_id=829607200]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_ikl0w")
 debug_color = Color(0.913616, 0.0984373, 0.671985, 0.42)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1226296463]
 position = Vector2(0, -6)
 target_position = Vector2(10, 0)
 
-[node name="RayCast2D2" type="RayCast2D" parent="."]
+[node name="RayCast2D2" type="RayCast2D" parent="." unique_id=340823885]
 position = Vector2(0, -6)
 target_position = Vector2(-10, 0)
