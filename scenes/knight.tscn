@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cbe4i4086infe" path="res://sprites/Knight 2D Pixel Art with_outline - original/RUN.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://dhancwf5vel24" path="res://sprites/Knight 2D Pixel Art with_outline - original/HURT.png" id="3_fjrip"]
 [ext_resource type="Texture2D" uid="uid://b28upsuvbek6l" path="res://sprites/Knight 2D Pixel Art with_outline - original/DEFEND.png" id="3_k2txo"]
-[ext_resource type="Texture2D" uid="uid://5f5ite7id8vf" path="res://sprites/Knight 2D Pixel Art with_outline/DEATH.png" id="4_14u3r"]
+[ext_resource type="Texture2D" uid="uid://5f5ite7id8vf" path="res://sprites/Knight 2D Pixel Art with_outline - original/DEATH.png" id="4_14u3r"]
 [ext_resource type="Texture2D" uid="uid://bepolcsh3r28e" path="res://sprites/Knight 2D Pixel Art with_outline - original/JUMP.png" id="5_smehm"]
 [ext_resource type="Texture2D" uid="uid://bpu5lnax0jipw" path="res://sprites/Knight 2D Pixel Art with_outline - original/WALK.png" id="8_mvyd6"]
 
@@ -493,7 +493,7 @@ script = ExtResource("1_qgb13")
 SPEED_MULTIPLIER_WHILE_BLOCKING = 0.3
 STRENGTH = 3
 HEALTH = 3
-SPEED = 120.0
+RUN_SPEED = 120.0
 
 [node name="Pivot" type="Node2D" parent="." unique_id=803745904]
 

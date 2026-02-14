@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cop0bc0c7rxu1"]
 
-[ext_resource type="Script" uid="uid://c8qntwbu76dd2" path="res://scripts/enemy.gd" id="1_5k0mc"]
+[ext_resource type="Script" uid="uid://56vchmcnagm2" path="res://scripts/stupid_enemy.gd" id="1_4ra3w"]
 [ext_resource type="Texture2D" uid="uid://b20lfl6ix6o1q" path="res://assets/spritesandtiles/knightspritesheet.png" id="1_v2p4v"]
 [ext_resource type="PackedScene" uid="uid://cqseq1rcfs8q" path="res://scenes/killzone.tscn" id="2_wgs4n"]
 
@@ -81,8 +81,7 @@ radius = 8.0
 
 [node name="enemy" type="CharacterBody2D" unique_id=609484323]
 collision_layer = 4
-script = ExtResource("1_5k0mc")
-SPEED = 40.0
+script = ExtResource("1_4ra3w")
 WEIGHT = 10.0
 
 [node name="Pivot" type="Node2D" parent="." unique_id=347418000]

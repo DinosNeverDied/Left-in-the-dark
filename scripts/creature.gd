@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @export var DAMAGE = 1
 @export var HEALTH = 1
-@export var SPEED = 80.0
+@export var RUN_SPEED = 80.0
 @export var WEIGHT = 80.0
 
 @onready var pivot: Node2D = $Pivot
@@ -17,7 +17,7 @@ var direction: int:
 
 var momentum: int:
 	get:
-		return SPEED * WEIGHT
+		return RUN_SPEED * WEIGHT
 
 func receive_damage(damage: int):
 	print(name, " HP: ", HEALTH, " => ", HEALTH - damage)
@@ -26,9 +26,9 @@ func receive_damage(damage: int):
 		die()
 
 
-func receive_knockback(momentum: float):
+func receive_knockback(knockback_momentum: float):
 	# print(name, " was blocked by " + creature.name)
-	position += Vector2(momentum / WEIGHT * -direction, 0)
+	position += Vector2(knockback_momentum / WEIGHT * -direction, 0)
 
 func _physics_process(delta: float):
 	pivot.scale.x = direction

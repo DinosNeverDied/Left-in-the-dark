@@ -1,4 +1,4 @@
-class_name Enemy
+class_name StupidEnemy
 extends Creature
 
 @onready var ray_cast_right: RayCast2D = $RayCast2D
@@ -13,7 +13,7 @@ func _physics_process(delta: float):
 
 	# handling movement 
 	if is_on_floor():
-		velocity.x = direction * SPEED
+		velocity.x = direction * RUN_SPEED
 		animated_sprite.play("run")
 
 	super._physics_process(delta)

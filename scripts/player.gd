@@ -46,7 +46,7 @@ func _physics_process(delta: float):
 			animated_sprite.pause()
 
 	velocity.x = (direction 
-		* SPEED 
+		* RUN_SPEED 
 		* (SPEED_MULTIPLIER_WHILE_ATTACKING if attacking else (SPEED_MULTIPLIER_WHILE_BLOCKING if blocking else 1.0))
 		) if moving else 0.0
 	
@@ -67,14 +67,14 @@ func _physics_process(delta: float):
 var last_animation = ""
 
 func _on_sword_body_entered(enemy: CharacterBody2D):
-	if enemy is not Enemy:
+	if enemy is not Creature:
 		return
 
 	enemy.receive_damage(DAMAGE)
 
 
 func _on_shield_body_entered(enemy: CharacterBody2D):
-	if enemy is not Enemy:
+	if enemy is not Creature:
 		return
 
 	print("Blocked by shield: ", enemy.name)

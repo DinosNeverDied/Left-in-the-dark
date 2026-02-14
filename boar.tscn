@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://uvv3morfrwli"]
+[gd_scene format=3 uid="uid://h3jbuqy3fmqq"]
 
-[ext_resource type="Script" uid="uid://c8qntwbu76dd2" path="res://scripts/enemy.gd" id="1_mn0bm"]
-[ext_resource type="Texture2D" uid="uid://bdl5owinvudc" path="res://sprites/Boar/Hit-Sheet-Black.png" id="2_156ks"]
-[ext_resource type="Texture2D" uid="uid://cygj16vtq34ja" path="res://sprites/Boar/Idle-Sheet-export-Back.png" id="2_mn0bm"]
-[ext_resource type="Texture2D" uid="uid://bb72vmib7sh46" path="res://sprites/Boar/Run-Sheet-Black.png" id="4_f7ac1"]
-[ext_resource type="Texture2D" uid="uid://dy7wdo6uq03gq" path="res://sprites/Boar/Walk-Base-SheetBlack.png" id="5_bb5y3"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_mn0bm"]
+[ext_resource type="Texture2D" uid="uid://bdl5owinvudc" path="res://Boar/Hit-Sheet-Black.png" id="2_156ks"]
+[ext_resource type="Texture2D" uid="uid://cygj16vtq34ja" path="res://Boar/Idle-Sheet-export-Back.png" id="2_mn0bm"]
+[ext_resource type="Texture2D" uid="uid://bb72vmib7sh46" path="res://Boar/Run-Sheet-Black.png" id="4_f7ac1"]
+[ext_resource type="Texture2D" uid="uid://dy7wdo6uq03gq" path="res://Boar/Walk-Base-SheetBlack.png" id="5_bb5y3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lp13s"]
 atlas = ExtResource("2_156ks")
@@ -184,10 +184,12 @@ size = Vector2(39, 28)
 a = Vector2(21, 1)
 b = Vector2(-65, -9)
 
-[node name="enemy" type="CharacterBody2D" unique_id=696404604]
+[node name="Boar" type="CharacterBody2D" unique_id=696404604]
 script = ExtResource("1_mn0bm")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=507102566]
+[node name="Pivot" type="Node2D" parent="." unique_id=366600773]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=507102566]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_aohpx")
 animation = &"idle"
