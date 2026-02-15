@@ -9,6 +9,7 @@ extends Creature
 @export var MAX_HEALTH = 5
 
 @onready var dead_audioplayer: AudioStreamPlayer = $AudioStreamPlayer
+@onready var knight_collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var sword_collision_shape: CollisionShape2D = $Pivot/SwordArea2D/SwordCollisionShape
 @onready var shield_collision_shape: CollisionShape2D = $Pivot/ShieldArea2D/ShieldCollisionShape
 @onready var invulnerability_timer: Timer = $InvulnerabilityTimer
@@ -24,6 +25,8 @@ func _physics_process(delta: float):
 
 	if dead:
 		velocity.x = 0
+		knight_collision_shape.monitorable = false
+		knight_collision_shape.monitoring = false
 		super._physics_process(delta)
 		return
 

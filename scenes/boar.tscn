@@ -183,7 +183,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6548"]
-size = Vector2(23.5, 25.875)
+size = Vector2(21.421875, 25.875)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1lypk"]
 atlas = ExtResource("6_156ks")
@@ -249,9 +249,10 @@ position = Vector2(0, -8)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_aohpx")
 animation = &"hit"
+frame = 3
+frame_progress = 1.0
 
 [node name="RayCast" type="RayCast2D" parent="Pivot" unique_id=510978204]
-visible = false
 position = Vector2(0, 1.005)
 target_position = Vector2(22, -0.004999995)
 
@@ -261,22 +262,19 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Pivot/View" unique_id=1075318041 groups=["enemy"]]
-visible = false
 scale = Vector2(-1, 1)
 polygon = PackedVector2Array(-24, -1, -176, -1, -176, -62)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187871853 groups=["enemy"]]
-visible = false
-position = Vector2(1.5, -4.5)
+position = Vector2(4.7109375, -4.5)
 shape = SubResource("RectangleShape2D_r6548")
 
 [node name="KillArea2D" type="Area2D" parent="." unique_id=915241367]
-visible = false
 collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea2D" unique_id=1285680894 groups=["enemy"]]
-position = Vector2(4, -5.0625)
+position = Vector2(1.828125, -5.0625)
 shape = SubResource("RectangleShape2D_r6548")
 
 [node name="BloodParent2D" type="Node2D" parent="." unique_id=639331852]
@@ -287,6 +285,8 @@ rotation = -3.1415925
 scale = Vector2(0.6, -0.61)
 sprite_frames = SubResource("SpriteFrames_sl5hn")
 animation = &"blood"
+frame = 6
+frame_progress = 1.0
 
 [connection signal="body_entered" from="Pivot/View" to="." method="_on_aggro_body_entered"]
 [connection signal="body_exited" from="Pivot/View" to="." method="_on_aggro_body_exited"]
