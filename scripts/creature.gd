@@ -6,9 +6,8 @@ extends CharacterBody2D
 @export var WALK_SPEED = 60.0
 @export var RUN_SPEED = 120.0
 @export var IDLE_TIME = 1.5
-@export var KNOCKBACK_FORCE = 220.0
+@export var KNOCKBACK_FORCE = 660.0
 @export var WEIGHT = 80.0
-
 @onready var pivot: Node2D = $Pivot
 @onready var animated_sprite: AnimatedSprite2D = $Pivot/AnimatedSprite2D
 

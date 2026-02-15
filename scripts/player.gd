@@ -81,7 +81,7 @@ func _on_sword_body_entered(enemy: CharacterBody2D):
 	if dead or enemy is not Creature:
 		return
 
-	enemy.receive_damage(DAMAGE)
+	enemy.take_sword_hit(self)
 
 
 func _on_shield_body_entered(enemy: CharacterBody2D):
@@ -89,9 +89,7 @@ func _on_shield_body_entered(enemy: CharacterBody2D):
 		return
 
 	print("Blocked by shield: ", enemy.name)
-	receive_knockback(enemy.momentum / STRENGTH)
-	enemy.receive_knockback(100)#momentum * STRENGTH)
-
+	enemy.take_shield_block(self)
 
 func receive_damage(damage: int):
 	if dead or is_flickering:
@@ -112,7 +110,6 @@ func die():
 	await animated_sprite.animation_finished
 
 	GameManager.player_died.emit()
-
 
 func start_flickering(time: float, flicker_count: int):
 	is_flickering = true

@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dhuq3vdemy0kp" path="res://scripts/level_1.gd" id="1_15wb7"]
 [ext_resource type="PackedScene" uid="uid://b0e0b0t77smh1" path="res://scenes/levels/gametilemap.tscn" id="3_yl73a"]
 [ext_resource type="PackedScene" uid="uid://0dyqpxiehd0p" path="res://scenes/knight.tscn" id="4_xbcdb"]
-[ext_resource type="PackedScene" path="res://scenes/boar.tscn" id="5_7dov7"]
-[ext_resource type="PackedScene" path="res://scenes/boarw.tscn" id="6_3p04p"]
+[ext_resource type="PackedScene" uid="uid://bwtohnaxbcfb3" path="res://scenes/boar.tscn" id="5_7dov7"]
+[ext_resource type="PackedScene" uid="uid://qmrstbgmrxsf" path="res://scenes/boarw.tscn" id="6_3p04p"]
 [ext_resource type="PackedScene" uid="uid://cqseq1rcfs8q" path="res://scenes/killzone.tscn" id="7_78pok"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_binft"]

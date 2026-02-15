@@ -1,18 +1,16 @@
 class_name Enemy
 extends Creature
 
-enum State {IDLE, WALK, RUN, HIT, STUNNED, DEAD}
+enum State {IDLE, WALK, RUN, HIT, STUNNED}
 
-@export var STUN_TIME = 0.4
-
+@export var STUN_TIME = 0.5
 @onready var raycast: RayCast2D = $Pivot/RayCast
 @onready var aggro: Area2D = $Aggro
 @onready var hitbox: Area2D = $Hitbox
 
 var state: State = State.WALK
-var idle_timer = 0.0
+var idle_timer = IDLE_TIME
 var stun_timer = STUN_TIME
-var knockback_velocity = Vector2.ZERO
 var player: Node2D = null
 
 func _physics_process(delta: float) -> void:
@@ -24,12 +22,10 @@ func _physics_process(delta: float) -> void:
 			handle_walk(delta)
 		State.RUN:
 			handle_run()
-		State.STUNNED:
-			handle_stunned(delta)
 		State.HIT:
-			pass
-		State.DEAD:
-			return
+			handle_hit(delta)
+		State.STUNNED:
+			handle_stun(delta)
 				
 	super._physics_process(delta)
 	
@@ -55,9 +51,9 @@ func handle_idle(delta: float) -> void:
 	velocity.x = 0
 	animated_sprite.play("idle")
 	
-	idle_timer += delta
-	if idle_timer >= IDLE_TIME:
-		idle_timer = 0
+	idle_timer -= delta
+	if idle_timer <= 0:
+		idle_timer = IDLE_TIME
 		state = State.WALK
 
 
@@ -70,31 +66,58 @@ func handle_run() -> void:
 	facing_right = sign(player.global_position.x - global_position.x) > 0
 	velocity.x = direction * RUN_SPEED
 	animated_sprite.play("run")
-
 	
-func handle_stunned(delta: float) -> void:
+func handle_hit(delta: float) -> void:
 	
+	animated_sprite.play("hit")
+	await animated_sprite.animation_finished
+	state = State.RUN if player != null else State.WALK
+	
+func handle_stun(delta: float) -> void:
+	
+	velocity.x = 0
 	stun_timer -= delta
-	
-	velocity.x = knockback_velocity.x
-	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 800 * delta)
 	animated_sprite.play("knockback")
-
 	
 	if stun_timer <= 0:
 		stun_timer = STUN_TIME
 		state = State.RUN if player != null else State.WALK
 
+func take_sword_hit(player: Creature) -> void:
 
-func _on_aggro_body_entered(body: Node2D):
+	receive_damage(player.DAMAGE)
+	receive_knockback(player.KNOCKBACK_FORCE)
+	state = State.HIT
 	
-	if body.is_in_group("player"):
-		player = body
+func take_shield_block(player: Creature) -> void:
+	
+	receive_knockback(player.KNOCKBACK_FORCE * 3)
+	state = State.STUNNED
+	
+
+func _on_aggro_body_entered(player: Node2D):
+	
+	if self.player == null:
+		self.player = player
 		state = State.RUN
 		
 		
-func _on_aggro_body_exited(body: Node2D):
+func _on_aggro_body_exited(player: Node2D):
 	
-	if body == player:
-		player = null
+	if self.player == player:
+		self.player = null
 		state = State.WALK
+
+func _on_killzone_body_entered(player: Node2D):
+	if player is not Player:
+		return
+
+	player.receive_damage(DAMAGE)
+
+func die():
+	
+	animated_sprite.play("hit")
+	await animated_sprite.animation_finished
+	
+	print(name, " died")
+	queue_free()

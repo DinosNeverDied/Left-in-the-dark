@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bb72vmib7sh46" path="res://Boar/Run-Sheet-Black.png" id="4_f7ac1"]
 [ext_resource type="Texture2D" uid="uid://dy7wdo6uq03gq" path="res://Boar/Walk-Base-SheetBlack.png" id="5_bb5y3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lp13s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb5y3"]
 atlas = ExtResource("2_156ks")
 region = Rect2(0, 0, 48, 32)
 
@@ -37,6 +37,10 @@ region = Rect2(96, 0, 48, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_f7ac1"]
 atlas = ExtResource("2_mn0bm")
 region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp13s"]
+atlas = ExtResource("2_156ks")
+region = Rect2(0, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fc1cp"]
 atlas = ExtResource("4_f7ac1")
@@ -89,19 +93,19 @@ region = Rect2(240, 0, 48, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_aohpx"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lp13s")
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_bb5y3")
 }, {
-"duration": 1.0,
+"duration": 0.75,
 "texture": SubResource("AtlasTexture_4qjkf")
 }, {
-"duration": 1.0,
+"duration": 0.75,
 "texture": SubResource("AtlasTexture_41htl")
 }, {
-"duration": 1.0,
+"duration": 0.75,
 "texture": SubResource("AtlasTexture_rlyfy")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
 "speed": 5.0
 }, {
@@ -178,11 +182,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6548"]
-size = Vector2(39, 28)
+size = Vector2(23.5, 25.875)
 
-[node name="Boar" type="CharacterBody2D" unique_id=696404604]
+[node name="Dark Boar" type="CharacterBody2D" unique_id=696404604]
 collision_layer = 4
-collision_mask = 3
 script = ExtResource("1_mn0bm")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1284381159]
@@ -191,8 +194,7 @@ script = ExtResource("1_mn0bm")
 position = Vector2(0, -8)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_aohpx")
-animation = &"idle"
-frame_progress = 0.0020522699
+animation = &"hit"
 
 [node name="RayCast" type="RayCast2D" parent="Pivot" unique_id=510978204]
 position = Vector2(0, 1.005)
@@ -205,11 +207,20 @@ collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Pivot/View" unique_id=1075318041 groups=["enemy"]]
 scale = Vector2(-1, 1)
-polygon = PackedVector2Array(-24, -1, -176, -1, -176, -85)
+polygon = PackedVector2Array(-24, -1, -176, -1, -176, -62)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187871853 groups=["enemy"]]
-position = Vector2(-0.5, -6)
+position = Vector2(1.5, -4.5)
+shape = SubResource("RectangleShape2D_r6548")
+
+[node name="KillArea2D" type="Area2D" parent="." unique_id=915241367]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea2D" unique_id=1285680894 groups=["enemy"]]
+position = Vector2(4, -5.0625)
 shape = SubResource("RectangleShape2D_r6548")
 
 [connection signal="body_entered" from="Pivot/View" to="." method="_on_aggro_body_entered"]
 [connection signal="body_exited" from="Pivot/View" to="." method="_on_aggro_body_exited"]
+[connection signal="body_entered" from="KillArea2D" to="." method="_on_killzone_body_entered"]
