@@ -1,6 +1,8 @@
 class_name Player
 extends Creature
 
+signal player_died
+
 @export var SPEED_MULTIPLIER_WHILE_ATTACKING = 0.5
 @export var SPEED_MULTIPLIER_WHILE_BLOCKING = 0.1
 @export var JUMP_VELOCITY = -300.0
@@ -8,11 +10,13 @@ extends Creature
 @export var STRENGTH = 1
 @export var MAX_HEALTH = 5
 
+@onready var dead_audioplayer: AudioStreamPlayer = $AudioStreamPlayer
 @onready var sword_collision_shape: CollisionShape2D = $Pivot/SwordArea2D/SwordCollisionShape
 @onready var shield_collision_shape: CollisionShape2D = $Pivot/ShieldArea2D/ShieldCollisionShape
 @onready var invulnerability_timer: Timer = $InvulnerabilityTimer
 
 var attacking = false
+var is_flickering = false
 var dead = false
 
 func _physics_process(delta: float):
@@ -100,10 +104,12 @@ func receive_damage(damage: int):
 func die():
 	dead = true
 
+	dead_audioplayer.play()
 	animated_sprite.play("die")
 	await animated_sprite.animation_finished
 
-	get_tree().call_deferred("reload_current_scene")
+	player_died.emit()
+
 
 func start_flickering(time: float, flicker_count: int):
 	is_flickering = true

@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://5f5ite7id8vf" path="res://sprites/Knight 2D Pixel Art with_outline - original/DEATH.png" id="4_14u3r"]
 [ext_resource type="Texture2D" uid="uid://bepolcsh3r28e" path="res://sprites/Knight 2D Pixel Art with_outline - original/JUMP.png" id="5_smehm"]
 [ext_resource type="Texture2D" uid="uid://bpu5lnax0jipw" path="res://sprites/Knight 2D Pixel Art with_outline - original/WALK.png" id="8_mvyd6"]
+[ext_resource type="AudioStream" uid="uid://blqqh1pq31831" path="res://assets/sounds/game-level-complete-143022 (1).mp3" id="10_3cm67"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_60mlk"]
 atlas = ExtResource("2_tuyoq")
@@ -531,6 +532,10 @@ limit_smoothed = true
 libraries/ = SubResource("AnimationLibrary_14u3r")
 
 [node name="InvulnerabilityTimer" type="Timer" parent="." unique_id=1790573368]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=407305561]
+stream = ExtResource("10_3cm67")
+bus = &"sfx"
 
 [connection signal="body_entered" from="Pivot/SwordArea2D" to="." method="_on_sword_body_entered"]
 [connection signal="body_entered" from="Pivot/ShieldArea2D" to="." method="_on_shield_body_entered"]

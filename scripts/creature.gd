@@ -10,7 +10,6 @@ extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $Pivot/AnimatedSprite2D
 
 var facing_right = true
-var is_flickering = false
 
 var direction: int:
 	get:
