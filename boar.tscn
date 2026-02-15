@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://h3jbuqy3fmqq"]
+[gd_scene format=3 uid="uid://bwtohnaxbcfb3"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_mn0bm"]
+[ext_resource type="Script" uid="uid://uq5w00fcfk3a" path="res://scripts/enemy.gd" id="1_mn0bm"]
 [ext_resource type="Texture2D" uid="uid://bdl5owinvudc" path="res://Boar/Hit-Sheet-Black.png" id="2_156ks"]
 [ext_resource type="Texture2D" uid="uid://cygj16vtq34ja" path="res://Boar/Idle-Sheet-export-Back.png" id="2_mn0bm"]
 [ext_resource type="Texture2D" uid="uid://bb72vmib7sh46" path="res://Boar/Run-Sheet-Black.png" id="4_f7ac1"]
@@ -180,36 +180,36 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6548"]
 size = Vector2(39, 28)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_r6548"]
-a = Vector2(21, 1)
-b = Vector2(-65, -9)
-
 [node name="Boar" type="CharacterBody2D" unique_id=696404604]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_mn0bm")
 
-[node name="Pivot" type="Node2D" parent="." unique_id=366600773]
+[node name="Pivot" type="Node2D" parent="." unique_id=1284381159]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=507102566]
 position = Vector2(0, -8)
+scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_aohpx")
 animation = &"idle"
-frame_progress = 0.29670635
+frame_progress = 0.0020522699
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187871853]
+[node name="RayCast" type="RayCast2D" parent="Pivot" unique_id=510978204]
+position = Vector2(0, 1.005)
+target_position = Vector2(21, -0.004999995)
+
+[node name="View" type="Area2D" parent="Pivot" unique_id=1630464821]
+position = Vector2(-11, -3)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Pivot/View" unique_id=1075318041 groups=["enemy"]]
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(-24, -1, -176, -1, -176, -85)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187871853 groups=["enemy"]]
 position = Vector2(-0.5, -6)
 shape = SubResource("RectangleShape2D_r6548")
 
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=510978204]
-position = Vector2(0, -6)
-target_position = Vector2(20, 0)
-
-[node name="RayCast2D2" type="RayCast2D" parent="." unique_id=698336114]
-position = Vector2(0, -6)
-target_position = Vector2(-22, 0)
-
-[node name="Aggro" type="Area2D" parent="." unique_id=1630464821]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Aggro" unique_id=2037069883]
-position = Vector2(-32, -5)
-shape = SubResource("SegmentShape2D_r6548")
-debug_color = Color(0.913616, 0.0984373, 0.671985, 0.42)
+[connection signal="body_entered" from="Pivot/View" to="." method="_on_aggro_body_entered"]
+[connection signal="body_exited" from="Pivot/View" to="." method="_on_aggro_body_exited"]
