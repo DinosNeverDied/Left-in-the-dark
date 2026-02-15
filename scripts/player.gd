@@ -19,6 +19,9 @@ var attacking = false
 var is_flickering = false
 var dead = false
 
+func _ready():
+	Hud.player_health_changed.emit(self)
+	
 func _physics_process(delta: float):
 
 	if dead:
@@ -69,7 +72,7 @@ func _physics_process(delta: float):
 	
 	if last_animation != animated_sprite.animation:
 		last_animation = animated_sprite.animation
-		print("Animation:", animated_sprite.animation)
+		# print("Animation:", animated_sprite.animation)
 
 	super._physics_process(delta)
 
@@ -95,6 +98,8 @@ func _on_shield_body_entered(enemy: CharacterBody2D):
 func receive_damage(damage: int):
 	if dead or is_flickering:
 		return
+
+	Hud.player_health_changed.emit(self)
 
 	super.receive_damage(damage)
 

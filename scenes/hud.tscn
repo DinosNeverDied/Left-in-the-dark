@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://dck7n5np1jfju"]
+
+[ext_resource type="Script" uid="uid://660kx2ffj0hj" path="res://scenes/hud.gd" id="1_047uy"]
+[ext_resource type="Script" uid="uid://crkdbtujnomrt" path="res://scenes/levels/game_over_screen.gd" id="1_uo2fv"]
+[ext_resource type="LabelSettings" uid="uid://x0nkvs0ub104" path="res://styles/ingametext.tres" id="2_047uy"]
+[ext_resource type="FontFile" uid="uid://bap4myteag8nn" path="res://assets/fonts/PixelOperator.ttf" id="3_5pdws"]
+[ext_resource type="Texture2D" uid="uid://c5i0soplliru6" path="res://sprites/heart.png" id="5_0i1j5"]
+[ext_resource type="Script" uid="uid://2rb5jcc3cp2" path="res://scenes/levels/hearts.gd" id="5_047uy"]
+
+[node name="Hud" type="CanvasLayer" unique_id=2108915235]
+script = ExtResource("1_047uy")
+
+[node name="Game over screen" type="Panel" parent="." unique_id=1866790166]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uo2fv")
+
+[node name="Game over label" type="Label" parent="Game over screen" unique_id=1962750824]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -81.5
+offset_right = 77.0
+offset_bottom = -58.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OEVER"
+label_settings = ExtResource("2_047uy")
+horizontal_alignment = 1
+
+[node name="developed by" type="Label" parent="Game over screen" unique_id=289850842]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.5
+offset_top = -40.0
+offset_right = 128.5
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "this demo was developed and published by 
+DARKPALETTEGAMES"
+label_settings = ExtResource("2_047uy")
+horizontal_alignment = 1
+
+[node name="button restart" type="Button" parent="Game over screen" unique_id=1152414147]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -12.0
+offset_right = 28.5
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_5pdws")
+text = "RESTART"
+
+[node name="scorelabel" type="Label" parent="." unique_id=138812303]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -55.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "SCORE : 0"
+label_settings = ExtResource("2_047uy")
+
+[node name="Hearts" type="HBoxContainer" parent="." unique_id=942398442]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 224.0
+offset_bottom = 48.0
+script = ExtResource("5_047uy")
+
+[node name="Heart1" type="TextureRect" parent="Hearts" unique_id=1538898368]
+layout_mode = 2
+texture = ExtResource("5_0i1j5")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="Hearts" unique_id=963644253]
+layout_mode = 2
+texture = ExtResource("5_0i1j5")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="Hearts" unique_id=232142910]
+layout_mode = 2
+texture = ExtResource("5_0i1j5")
+expand_mode = 2
+
+[node name="Heart4" type="TextureRect" parent="Hearts" unique_id=1874030902]
+layout_mode = 2
+texture = ExtResource("5_0i1j5")
+expand_mode = 2
+
+[node name="Heart5" type="TextureRect" parent="Hearts" unique_id=1005886568]
+layout_mode = 2
+texture = ExtResource("5_0i1j5")
+expand_mode = 2
+
+[node name="Heart6" type="TextureRect" parent="Hearts" unique_id=1050429089]
+layout_mode = 2
+texture = ExtResource("5_0i1j5")
+expand_mode = 2
+
+[connection signal="pressed" from="Game over screen/button restart" to="Game over screen" method="_on_button_restart_pressed"]

@@ -25,7 +25,8 @@ buses/default_bus_layout="uid://cnnyv8w1eq6cy"
 
 [autoload]
 
-Bgscore="*res://scenes/bgscore.tscn"
+Hud="*uid://dck7n5np1jfju"
+GameEvents="*uid://doiktpktsnoq7"
 
 [display]
 
