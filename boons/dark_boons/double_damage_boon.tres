@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Boon" format=3 uid="uid://dklm0oisjbwdd"]
 
-[ext_resource type="Script" uid="uid://1vwwdfcei8td" path="res://scripts/boon.gd" id="1_4wbop"]
+[ext_resource type="Script" uid="uid://1vwwdfcei8td" path="res://scripts/boon_data.gd" id="1_4wbop"]
 
 [resource]
 script = ExtResource("1_4wbop")

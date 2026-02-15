@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bepolcsh3r28e" path="res://sprites/Knight 2D Pixel Art with_outline - original/JUMP.png" id="5_smehm"]
 [ext_resource type="Texture2D" uid="uid://bpu5lnax0jipw" path="res://sprites/Knight 2D Pixel Art with_outline - original/WALK.png" id="8_mvyd6"]
 [ext_resource type="AudioStream" uid="uid://dr7vg1oo5glx1" path="res://assets/sounds/086398_game-die-81356.mp3" id="10_3cm67"]
+[ext_resource type="Texture2D" uid="uid://glxgomuvdamd" path="res://sprites/coffee.png" id="10_w8y5l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_60mlk"]
 atlas = ExtResource("2_tuyoq")
@@ -518,6 +519,10 @@ collision_mask = 4
 [node name="ShieldCollisionShape" type="CollisionShape2D" parent="Pivot/ShieldArea2D" unique_id=1753740699]
 position = Vector2(4, 4)
 shape = SubResource("CircleShape2D_14u3r")
+
+[node name="Coffee" type="Sprite2D" parent="Pivot/ShieldArea2D" unique_id=192478150]
+position = Vector2(488, 277)
+texture = ExtResource("10_w8y5l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=104607230]
 position = Vector2(0, 4.5)

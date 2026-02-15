@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://6rgq2dy04osq"]
+
+[ext_resource type="Script" uid="uid://bb28o0uypt3o4" path="res://scripts/boon.gd" id="1_nhkwr"]
+[ext_resource type="Texture2D" uid="uid://glxgomuvdamd" path="res://sprites/coffee.png" id="2_7ur6y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_45fxb"]
+radius = 14.142136
+
+[node name="DarkBoon" type="Area2D" unique_id=2080184143]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_nhkwr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=237661954]
+texture = ExtResource("2_7ur6y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1438840289]
+position = Vector2(3, 3)
+shape = SubResource("CircleShape2D_45fxb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

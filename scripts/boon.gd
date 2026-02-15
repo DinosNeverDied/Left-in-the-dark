@@ -1,11 +1,12 @@
-class_name Boon
-extends Resource
+class_name Boon extends Node2D
 
-enum Type { HEALTH, ATTACK_MULTIPLIER, SPEED, DEFENSE }
-enum Rarity { COMMON, RARE, EPIC }
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
-@export var title: String
-@export var description: String
-@export var type: Type
-@export var value: float
-@export var rarity: Rarity
+func _on_body_entered(player: Node2D):
+	if player is not Player:
+		return
+
+	queue_free()
+
+
