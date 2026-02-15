@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $Pivot/AnimatedSprite2D
 
 var facing_right = true
+var is_flickering = false
 
 var direction: int:
 	get:
@@ -42,3 +43,4 @@ func _physics_process(delta: float):
 func die():
 	print(name, " died")
 	queue_free()
+

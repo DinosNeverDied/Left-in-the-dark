@@ -6,15 +6,21 @@ extends Creature
 @export var JUMP_VELOCITY = -300.0
 @export var INVULNERABILITY_DURATION = 1.0
 @export var STRENGTH = 1
+@export var MAX_HEALTH = 5
 
 @onready var sword_collision_shape: CollisionShape2D = $Pivot/SwordArea2D/SwordCollisionShape
 @onready var shield_collision_shape: CollisionShape2D = $Pivot/ShieldArea2D/ShieldCollisionShape
 @onready var invulnerability_timer: Timer = $InvulnerabilityTimer
-var is_invulnerable = false
 
 var attacking = false
+var dead = false
 
 func _physics_process(delta: float):
+
+	if dead:
+		velocity.x = 0
+		super._physics_process(delta)
+		return
 
 	var player_wants_to_attack = Input.is_action_pressed("attack")
 	var player_wants_to_block = Input.is_action_pressed("block")
@@ -67,14 +73,14 @@ func _physics_process(delta: float):
 var last_animation = ""
 
 func _on_sword_body_entered(enemy: CharacterBody2D):
-	if enemy is not Creature:
+	if dead or enemy is not Creature:
 		return
 
 	enemy.receive_damage(DAMAGE)
 
 
 func _on_shield_body_entered(enemy: CharacterBody2D):
-	if enemy is not Creature:
+	if dead or enemy is not Creature:
 		return
 
 	print("Blocked by shield: ", enemy.name)
@@ -83,18 +89,35 @@ func _on_shield_body_entered(enemy: CharacterBody2D):
 
 
 func receive_damage(damage: int):
-	if is_invulnerable:
+	if dead or is_flickering:
 		return
 
 	super.receive_damage(damage)
 
-	if HEALTH > 0:
-		is_invulnerable = true
-		invulnerability_timer.start(INVULNERABILITY_DURATION)
-
-func _on_invulnerability_timer_timeout():
-	is_invulnerable = false
+	if not dead:
+		start_flickering(1.3, 3)
 
 func die():
-	print("GAME OVER")
-	get_tree().reload_current_scene()
+	dead = true
+
+	animated_sprite.play("die")
+	await animated_sprite.animation_finished
+
+	get_tree().call_deferred("reload_current_scene")
+
+func start_flickering(time: float, flicker_count: int):
+	is_flickering = true
+	var total_intervals = 2 * flicker_count - 1
+	var flicker_time = time / total_intervals
+
+	for index in flicker_count:
+		animated_sprite.modulate.a = 0.5
+		invulnerability_timer.start(flicker_time)
+		await invulnerability_timer.timeout
+		
+		animated_sprite.modulate.a = 1.0
+		if index < flicker_count - 1:
+			invulnerability_timer.start(flicker_time)
+			await invulnerability_timer.timeout
+
+	is_flickering = false

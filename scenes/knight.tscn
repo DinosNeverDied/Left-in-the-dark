@@ -311,7 +311,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8pn50")
 }],
-"loop": true,
+"loop": false,
 "name": &"die",
 "speed": 5.0
 }, {
@@ -464,7 +464,7 @@ height = 44.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_14u3r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_swm0g"]
-size = Vector2(14, 34)
+size = Vector2(14, 31)
 
 [sub_resource type="Animation" id="Animation_mvyd6"]
 resource_name = "test"
@@ -499,7 +499,7 @@ RUN_SPEED = 120.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=788565345]
 sprite_frames = SubResource("SpriteFrames_60mlk")
-animation = &"walk"
+animation = &"die"
 
 [node name="SwordArea2D" type="Area2D" parent="Pivot" unique_id=1907885349]
 collision_layer = 0
@@ -519,7 +519,7 @@ position = Vector2(4, 4)
 shape = SubResource("CircleShape2D_14u3r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=104607230]
-position = Vector2(0, 3)
+position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_swm0g")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1434990575]
