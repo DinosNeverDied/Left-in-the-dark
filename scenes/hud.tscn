@@ -1,14 +1,12 @@
 [gd_scene format=3 uid="uid://dck7n5np1jfju"]
 
-[ext_resource type="Script" uid="uid://660kx2ffj0hj" path="res://scenes/hud.gd" id="1_047uy"]
-[ext_resource type="Script" uid="uid://crkdbtujnomrt" path="res://scenes/levels/game_over_screen.gd" id="1_uo2fv"]
+[ext_resource type="Script" uid="uid://crkdbtujnomrt" path="res://scripts/game_over_screen.gd" id="1_uo2fv"]
 [ext_resource type="LabelSettings" uid="uid://x0nkvs0ub104" path="res://styles/ingametext.tres" id="2_047uy"]
 [ext_resource type="FontFile" uid="uid://bap4myteag8nn" path="res://assets/fonts/PixelOperator.ttf" id="3_5pdws"]
 [ext_resource type="Texture2D" uid="uid://c5i0soplliru6" path="res://sprites/heart.png" id="5_0i1j5"]
-[ext_resource type="Script" uid="uid://2rb5jcc3cp2" path="res://scenes/levels/hearts.gd" id="5_047uy"]
+[ext_resource type="Script" uid="uid://2rb5jcc3cp2" path="res://scripts/hearts.gd" id="5_047uy"]
 
 [node name="Hud" type="CanvasLayer" unique_id=2108915235]
-script = ExtResource("1_047uy")
 
 [node name="Game over screen" type="Panel" parent="." unique_id=1866790166]
 visible = false

@@ -1,14 +1,11 @@
-[gd_scene format=4 uid="uid://eof3y8lu6l5e"]
+[gd_scene format=4 uid="uid://chfeau6l8dytc"]
 
 [ext_resource type="Script" uid="uid://dhuq3vdemy0kp" path="res://scripts/level_1.gd" id="1_15wb7"]
-[ext_resource type="Script" uid="uid://bhr1db3uk5ijb" path="res://scripts/gamemanager.gd" id="2_eoq84"]
 [ext_resource type="PackedScene" uid="uid://b0e0b0t77smh1" path="res://scenes/levels/gametilemap.tscn" id="3_yl73a"]
 [ext_resource type="PackedScene" uid="uid://0dyqpxiehd0p" path="res://scenes/knight.tscn" id="4_xbcdb"]
-[ext_resource type="PackedScene" uid="uid://bwtohnaxbcfb3" path="res://scenes/boar.tscn" id="5_7dov7"]
-[ext_resource type="PackedScene" uid="uid://qmrstbgmrxsf" path="res://scenes/boarw.tscn" id="6_3p04p"]
-[ext_resource type="LabelSettings" uid="uid://x0nkvs0ub104" path="res://styles/ingametext.tres" id="6_5hnhx"]
+[ext_resource type="PackedScene" path="res://scenes/boar.tscn" id="5_7dov7"]
+[ext_resource type="PackedScene" path="res://scenes/boarw.tscn" id="6_3p04p"]
 [ext_resource type="PackedScene" uid="uid://cqseq1rcfs8q" path="res://scenes/killzone.tscn" id="7_78pok"]
-[ext_resource type="FontFile" uid="uid://bap4myteag8nn" path="res://assets/fonts/PixelOperator.ttf" id="10_5kfcu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_binft"]
 normal = Vector2(-0.12535708, -0.99211174)
@@ -16,10 +13,6 @@ distance = -177.55473
 
 [node name="level2" type="Node2D" unique_id=1366298532]
 script = ExtResource("1_15wb7")
-
-[node name="gamemanager" type="Node" parent="." unique_id=1797625912]
-unique_name_in_owner = true
-script = ExtResource("2_eoq84")
 
 [node name="tilemap_background" parent="." unique_id=101838694 instance=ExtResource("3_yl73a")]
 visible = false
@@ -31,38 +24,25 @@ tile_map_data = PackedByteArray("AAD7/wAAAAADAAAAAAACAAAAAAADAAAAAAD8/wAAAAADAAA
 [node name="Knight" parent="." unique_id=1019969508 instance=ExtResource("4_xbcdb")]
 position = Vector2(2, -106)
 
-[node name="DBoar1" parent="." unique_id=696404604 instance=ExtResource("5_7dov7")]
+[node name="Enemies" type="Node2D" parent="." unique_id=1152259378]
+
+[node name="DBoar1" parent="Enemies" unique_id=696404604 instance=ExtResource("5_7dov7")]
 position = Vector2(-604, 56)
 
-[node name="DBoar2" parent="." unique_id=869731098 instance=ExtResource("5_7dov7")]
+[node name="DBoar2" parent="Enemies" unique_id=869731098 instance=ExtResource("5_7dov7")]
 position = Vector2(-886, 150)
 
-[node name="DBoar3" parent="." unique_id=1772231433 instance=ExtResource("5_7dov7")]
+[node name="DBoar3" parent="Enemies" unique_id=1772231433 instance=ExtResource("5_7dov7")]
 position = Vector2(-2187, 742)
 
-[node name="WBoar1" parent="." unique_id=661707616 instance=ExtResource("6_3p04p")]
+[node name="WBoar1" parent="Enemies" unique_id=661707616 instance=ExtResource("6_3p04p")]
 position = Vector2(629, 23)
 
-[node name="WBoar2" parent="." unique_id=2041511662 instance=ExtResource("6_3p04p")]
+[node name="WBoar2" parent="Enemies" unique_id=2041511662 instance=ExtResource("6_3p04p")]
 position = Vector2(900, -40)
 
-[node name="WBoar3" parent="." unique_id=22017645 instance=ExtResource("6_3p04p")]
+[node name="WBoar3" parent="Enemies" unique_id=22017645 instance=ExtResource("6_3p04p")]
 position = Vector2(2215, -186)
-
-[node name="labels" type="Node" parent="." unique_id=989878435]
-
-[node name="Label" type="Label" parent="labels" unique_id=449926893]
-offset_left = -125.0
-offset_top = -215.0
-offset_right = -16.0
-offset_bottom = -140.0
-text = " click left or right arrows to move"
-label_settings = ExtResource("6_5hnhx")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="coins" type="Node" parent="." unique_id=2137956952]
 
 [node name="killzone" parent="." unique_id=1752254922 instance=ExtResource("7_78pok")]
 visible = false
@@ -71,75 +51,3 @@ visible = false
 position = Vector2(106, 200)
 scale = Vector2(2, 2)
 shape = SubResource("WorldBoundaryShape2D_binft")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1496561976]
-
-[node name="gamecomplete" type="Panel" parent="CanvasLayer" unique_id=442202590]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/gamecomplete" unique_id=1582904310]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -77.0
-offset_top = -81.5
-offset_right = 77.0
-offset_bottom = -58.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "CONGRATS ! YOU ARE GREAT"
-label_settings = ExtResource("6_5hnhx")
-
-[node name="Label2" type="Label" parent="CanvasLayer/gamecomplete" unique_id=2101075980]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -128.5
-offset_top = -40.0
-offset_right = 128.5
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "this demo was developed and published by 
-DARKPALETTEGAMES"
-label_settings = ExtResource("6_5hnhx")
-horizontal_alignment = 1
-
-[node name="RESTARTBUTTON" type="Button" parent="CanvasLayer/gamecomplete" unique_id=713615934]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -28.5
-offset_top = -12.0
-offset_right = 28.5
-offset_bottom = 12.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("10_5kfcu")
-text = "RESTART"
-
-[node name="scorelabel" type="Label" parent="CanvasLayer" unique_id=2073473484]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -55.0
-offset_bottom = 23.0
-grow_horizontal = 0
-text = "SCORE : 0"
-label_settings = ExtResource("6_5hnhx")
-
-[connection signal="pressed" from="CanvasLayer/gamecomplete/RESTARTBUTTON" to="." method="_on_restartbutton_pressed"]

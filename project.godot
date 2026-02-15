@@ -26,7 +26,7 @@ buses/default_bus_layout="uid://cnnyv8w1eq6cy"
 [autoload]
 
 Hud="*uid://dck7n5np1jfju"
-GameEvents="*uid://doiktpktsnoq7"
+GameManager="*uid://cecb5ashk08t0"
 
 [display]
 

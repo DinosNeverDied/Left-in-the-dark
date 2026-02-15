@@ -4,6 +4,7 @@ extends Creature
 @onready var ray_cast_right: RayCast2D = $RayCast2D
 @onready var ray_cast_left: RayCast2D = $RayCast2D2
 
+
 func _physics_process(delta: float):
 	# change direction according to which raycast is colliding
 	if ray_cast_right.is_colliding():
@@ -17,6 +18,7 @@ func _physics_process(delta: float):
 		animated_sprite.play("run")
 
 	super._physics_process(delta)
+
 
 func _on_killzone_body_entered(player: CharacterBody2D):
 	if player is not Player:

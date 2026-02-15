@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cv8rrwrejrbn0"]
+[gd_scene format=3 uid="uid://cv8rrwrejrbn0"]
 
-[ext_resource type="Script" path="res://scripts/coins.gd" id="1_rtv30"]
+[ext_resource type="Script" uid="uid://c3h3vmu8xhpan" path="res://scripts/coin.gd" id="1_rtv30"]
 [ext_resource type="Texture2D" uid="uid://pdq6g82b0oj0" path="res://assets/spritesandtiles/coinsspritesheet.png" id="1_rud0w"]
 [ext_resource type="AudioStream" uid="uid://dpheh5d76okmv" path="res://assets/sounds/retro-coin-4-236671 (1).mp3" id="3_8vf0x"]
 
@@ -50,20 +50,20 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_3fwa7"]
 radius = 5.0
 
-[node name="coins" type="Area2D"]
+[node name="coins" type="Area2D" unique_id=242520568]
 collision_mask = 2
 script = ExtResource("1_rtv30")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1488511576]
 sprite_frames = SubResource("SpriteFrames_8idiw")
 animation = &"coins"
 autoplay = "coins"
 frame_progress = 0.58462
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=674493271]
 shape = SubResource("CircleShape2D_3fwa7")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=788636078]
 stream = ExtResource("3_8vf0x")
 bus = &"sfx"
 
