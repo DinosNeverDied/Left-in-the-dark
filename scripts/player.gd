@@ -1,12 +1,17 @@
 class_name Player
 extends Creature
 
-@export var SPEED_MULTIPLIER_WHILE_ATTACKING = 0.5
-@export var SPEED_MULTIPLIER_WHILE_BLOCKING = 0.1
+@export var STAMINA = 3
+@export var DEFAULT_MAX_HEALTH = 3
+@export var DEFAULT_MAX_SHIELD_STAMINA = 3
+# @export var DEFAULT_DAMAGE = 1
+@export var DEFAULT_ATTACKING_SPEED = 2
+# @export var DEFAULT_RUN_SPEED = 120
+@export var DEFAULT_SPEED_MULTIPLIER_WHILE_ATTACKING = 0.5
+@export var DEFAULT_SPEED_MULTIPLIER_WHILE_BLOCKING = 0.3
+
 @export var JUMP_VELOCITY = -300.0
 @export var INVULNERABILITY_DURATION = 1.0
-@export var STRENGTH = 1
-@export var MAX_HEALTH = 5
 
 @onready var dead_audioplayer: AudioStreamPlayer = $AudioStreamPlayer
 @onready var knight_collision_shape: CollisionShape2D = $CollisionShape2D
@@ -14,13 +19,38 @@ extends Creature
 @onready var shield_collision_shape: CollisionShape2D = $Pivot/ShieldArea2D/ShieldCollisionShape
 @onready var invulnerability_timer: Timer = $InvulnerabilityTimer
 
+var MAX_HEALTH:
+	get:
+		return DEFAULT_MAX_HEALTH + GameManager.check_for_boon_value(
+			Boon.Type.HEALTH_PLUS, 0)
+
+var MAX_SHIELD_STAMINA:
+	get:
+		return DEFAULT_MAX_SHIELD_STAMINA + GameManager.check_for_boon_value(
+			Boon.Type.SHIELD_STAMINA_PLUS, 0)
+
+var SPEED_MULTIPLIER_WHILE_ATTACKING:
+	get:
+		return DEFAULT_SPEED_MULTIPLIER_WHILE_ATTACKING * GameManager.check_for_boon_value(
+			Boon.Type.ATTACK_MOVEMENT_SPEED_MULTIPLIER, 1)
+
+var SPEED_MULTIPLIER_WHILE_BLOCKING:
+	get:
+		return DEFAULT_SPEED_MULTIPLIER_WHILE_BLOCKING * GameManager.check_for_boon_value(
+			Boon.Type.BLOCK_MOVEMENT_SPEED_MULTIPLIER, 1)
+
+
 var attacking = false
 var is_flickering = false
 var dead = false
 
+
 func _ready():
 	GameManager.player_health_changed.emit(self)
+	GameManager.player_stamina_changed.emit(self)
+	GameManager.boon_added.connect(_on_boon_added)
 	
+
 func _physics_process(delta: float):
 
 	if dead:
@@ -71,14 +101,8 @@ func _physics_process(delta: float):
 	sword_collision_shape.disabled = not (attacking and (animated_sprite.frame == 3 or animated_sprite.frame == 4))
 	shield_collision_shape.disabled = not blocking
 	
-	if last_animation != animated_sprite.animation:
-		last_animation = animated_sprite.animation
-		# print("Animation:", animated_sprite.animation)
-
 	super._physics_process(delta)
 
-# For debugging 
-var last_animation = ""
 
 func _on_sword_body_entered(enemy: CharacterBody2D):
 	if dead or enemy is not Creature:
@@ -86,13 +110,26 @@ func _on_sword_body_entered(enemy: CharacterBody2D):
 
 	enemy.take_sword_hit(self)
 
+	var lifesteal_chance = GameManager.check_for_boon_value(Boon.Type.LIFESTEAL_CHANCE, 0)
+
+	if randf() <= lifesteal_chance:
+		HEALTH += 1
+
 
 func _on_shield_body_entered(enemy: CharacterBody2D):
-	if dead or enemy is not Creature:
+	if dead or enemy is not Creature or STAMINA <= 0:
 		return
 
+	STAMINA -= 1
+	GameManager.player_stamina_changed.emit(self)
+
 	print("Blocked by shield: ", enemy.name)
+	var counter_damage = GameManager.check_for_boon_value(Boon.Type.BLOCK_DAMAGE, 0)
+	if counter_damage > 0:
+		enemy.receive_damage(counter_damage)
+		
 	enemy.take_shield_block(self)
+
 
 func receive_damage(damage: int):
 	if dead or is_flickering:
@@ -105,6 +142,7 @@ func receive_damage(damage: int):
 	if not dead:
 		start_flickering(1.3, 3)
 
+
 func die():
 	dead = true
 
@@ -113,6 +151,7 @@ func die():
 	await animated_sprite.animation_finished
 
 	GameManager.player_died.emit()
+
 
 func start_flickering(time: float, flicker_count: int):
 	is_flickering = true
@@ -130,3 +169,33 @@ func start_flickering(time: float, flicker_count: int):
 			await invulnerability_timer.timeout
 
 	is_flickering = false
+
+
+func _on_boon_added(boon: Boon):
+	if boon.type == Boon.Type.ATTACK_DAMAGE_MULTIPLIER:
+		DAMAGE *= GameManager.check_for_boon_value(
+			Boon.Type.ATTACK_DAMAGE_MULTIPLIER, 1)
+
+	elif boon.type == Boon.Type.SPEED_MULTIPLIER:
+		RUN_SPEED *= GameManager.check_for_boon_value(
+			Boon.Type.SPEED_MULTIPLIER, 1)
+
+	elif boon.type == Boon.Type.BLOCK_KNOCKBACK_MULTIPLIER:
+		KNOCKBACK_FORCE *= GameManager.check_for_boon_value(
+			Boon.Type.BLOCK_KNOCKBACK_MULTIPLIER, 1)
+
+	elif boon.type == Boon.Type.HEALTH_PLUS:
+		increase_health(MAX_HEALTH) # Heal full
+
+	elif boon.type == Boon.Type.ATTACK_SPEED_MULTIPLIER:
+		# fps = animationFramesCount * attacking speed (latter is in 1/s)
+		# e.g.  6 frames * 2/s = 12 fps
+		animated_sprite.set_animation_speed(
+			"attack", 
+			animated_sprite.sprite_frames.get_frame_count("attack") * DEFAULT_ATTACKING_SPEED * GameManager.check_for_boon_value(
+			Boon.Type.ATTACK_SPEED_MULTIPLIER, 1)) 
+
+
+func increase_health(amount: int):
+	HEALTH = min(HEALTH + amount, MAX_HEALTH)
+	GameManager.player_health_changed.emit(self)

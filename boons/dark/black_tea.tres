@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Boon" format=3 uid="uid://8338tg2f0fh3"]
+
+[ext_resource type="Script" uid="uid://d3vkad02h3laj" path="res://scripts/boon.gd" id="1_isgsw"]
+
+[resource]
+script = ExtResource("1_isgsw")
+title = "Black Tea"
+description = "This soothing tea lets you {infrequently/sometimes/often} heal you whenever you hit enemy."
+is_dark = true
+type = 7
+value_common = 0.1
+value_rare = 0.2
+value_epic = 0.3

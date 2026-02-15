@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Boon" format=3 uid="uid://bmrxjrpbgu7ws"]
+
+[ext_resource type="Script" uid="uid://d3vkad02h3laj" path="res://scripts/boon.gd" id="1_ls0fo"]
+
+[resource]
+script = ExtResource("1_ls0fo")
+title = "Pea Milk"
+description = "This protein-rich plant milk lets you walk VALUE x faster while using the shield."
+application_type = 1
+type = 6
+value_common = 1.3
+value_rare = 1.6
+value_epic = 2.0

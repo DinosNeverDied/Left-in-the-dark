@@ -5,11 +5,13 @@
 [ext_resource type="FontFile" uid="uid://bap4myteag8nn" path="res://assets/fonts/PixelOperator.ttf" id="3_5pdws"]
 [ext_resource type="Texture2D" uid="uid://c5i0soplliru6" path="res://sprites/heart.png" id="5_0i1j5"]
 [ext_resource type="Script" uid="uid://2rb5jcc3cp2" path="res://scripts/hearts.gd" id="5_047uy"]
+[ext_resource type="Texture2D" uid="uid://dujgsrdov3axv" path="res://sprites/shield.png" id="6_5pdws"]
+[ext_resource type="PackedScene" uid="uid://ct4snjslscwpc" path="res://scenes/boon_dialog.tscn" id="6_047uy"]
+[ext_resource type="Script" uid="uid://boc8deqyb32ee" path="res://scenes/shields.gd" id="6_hd3ao"]
 
 [node name="Hud" type="CanvasLayer" unique_id=2108915235]
 
-[node name="Game over screen" type="Panel" parent="." unique_id=1866790166]
-visible = false
+[node name="GameOverScreen" type="Panel" parent="." unique_id=1866790166]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,7 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uo2fv")
 
-[node name="Game over label" type="Label" parent="Game over screen" unique_id=1962750824]
+[node name="GameOverLabel" type="Label" parent="GameOverScreen" unique_id=1962750824]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -34,7 +36,7 @@ text = "GAME OEVER"
 label_settings = ExtResource("2_047uy")
 horizontal_alignment = 1
 
-[node name="developed by" type="Label" parent="Game over screen" unique_id=289850842]
+[node name="DevelopedByLabel" type="Label" parent="GameOverScreen" unique_id=289850842]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -52,7 +54,7 @@ DARKPALETTEGAMES"
 label_settings = ExtResource("2_047uy")
 horizontal_alignment = 1
 
-[node name="button restart" type="Button" parent="Game over screen" unique_id=1152414147]
+[node name="RestartButton" type="Button" parent="GameOverScreen" unique_id=1152414147]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -68,7 +70,7 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_5pdws")
 text = "RESTART"
 
-[node name="scorelabel" type="Label" parent="." unique_id=138812303]
+[node name="Time" type="Label" parent="." unique_id=138812303]
 visible = false
 anchors_preset = 1
 anchor_left = 1.0
@@ -116,4 +118,49 @@ layout_mode = 2
 texture = ExtResource("5_0i1j5")
 expand_mode = 2
 
-[connection signal="pressed" from="Game over screen/button restart" to="Game over screen" method="_on_button_restart_pressed"]
+[node name="Shields" type="HBoxContainer" parent="." unique_id=1488305764]
+offset_left = 8.0
+offset_top = 56.945
+offset_right = 334.0
+offset_bottom = 96.94498
+script = ExtResource("6_hd3ao")
+
+[node name="Stamina1" type="TextureRect" parent="Shields" unique_id=1446262534]
+layout_mode = 2
+texture = ExtResource("6_5pdws")
+expand_mode = 2
+
+[node name="Stamina2" type="TextureRect" parent="Shields" unique_id=656106747]
+layout_mode = 2
+texture = ExtResource("6_5pdws")
+expand_mode = 2
+
+[node name="Stamina3" type="TextureRect" parent="Shields" unique_id=668342446]
+layout_mode = 2
+texture = ExtResource("6_5pdws")
+expand_mode = 2
+
+[node name="Stamina4" type="TextureRect" parent="Shields" unique_id=1248819436]
+layout_mode = 2
+texture = ExtResource("6_5pdws")
+expand_mode = 2
+
+[node name="Stamina5" type="TextureRect" parent="Shields" unique_id=489355934]
+layout_mode = 2
+texture = ExtResource("6_5pdws")
+expand_mode = 2
+
+[node name="Stamina6" type="TextureRect" parent="Shields" unique_id=396449965]
+layout_mode = 2
+texture = ExtResource("6_5pdws")
+expand_mode = 2
+
+[node name="BoonDialog" parent="." unique_id=155098323 instance=ExtResource("6_047uy")]
+offset_top = 116.865
+offset_bottom = 116.86493
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=386712310]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="GameOverScreen/RestartButton" to="GameOverScreen" method="_on_button_restart_pressed"]

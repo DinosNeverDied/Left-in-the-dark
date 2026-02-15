@@ -2,6 +2,7 @@ extends Panel
 
 func _ready():
 	GameManager.player_died.connect(_on_player_died)
+	visible = false
 
 
 func _on_player_died():

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Boon" format=3 uid="uid://dvlpuvgi1pjo6"]
+
+[ext_resource type="Script" uid="uid://d3vkad02h3laj" path="res://scripts/boon.gd" id="1_tbss3"]
+
+[resource]
+script = ExtResource("1_tbss3")
+title = "Cow Milk"
+description = "This milk builds you up and allows you to have VALUE hearts more - immediatly!"
+value_common = 1.0
+value_rare = 2.0
+value_epic = 3.0

@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Left in the dark"
-run/main_scene="uid://chfeau6l8dytc"
+run/main_scene="uid://dswi77j3xwly5"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.svg"
 
@@ -25,9 +25,9 @@ buses/default_bus_layout="uid://cnnyv8w1eq6cy"
 
 [autoload]
 
-Bgscore="*res://scenes/bgscore.tscn"
 Hud="*uid://dck7n5np1jfju"
 GameManager="*uid://cecb5ashk08t0"
+Bgscore="*res://scenes/bgscore.tscn"
 
 [display]
 
