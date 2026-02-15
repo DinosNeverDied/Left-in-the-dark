@@ -7,6 +7,59 @@
 [ext_resource type="Texture2D" uid="uid://dy7wdo6uq03gq" path="res://Boar/Walk-Base-SheetBlack.png" id="5_bb5y3"]
 [ext_resource type="Texture2D" uid="uid://clxqec7sxf6ec" path="res://sprites/Sprite-Vorrat/BloodFX Batch 1/VFX Blood Batch 1_SpriteSheetColumns.png" id="6_156ks"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1lypk"]
+atlas = ExtResource("6_156ks")
+region = Rect2(220, 500, 110, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6he5n"]
+atlas = ExtResource("6_156ks")
+region = Rect2(220, 0, 110, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72mxr"]
+atlas = ExtResource("6_156ks")
+region = Rect2(220, 100, 110, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlswv"]
+atlas = ExtResource("6_156ks")
+region = Rect2(220, 200, 110, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4vq7"]
+atlas = ExtResource("6_156ks")
+region = Rect2(220, 300, 110, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sl5hn"]
+atlas = ExtResource("6_156ks")
+region = Rect2(220, 400, 110, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sl5hn"]
+animations = [{
+"frames": [{
+"duration": 0.01,
+"texture": SubResource("AtlasTexture_1lypk")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_6he5n")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_72mxr")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_hlswv")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_y4vq7")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_sl5hn")
+}, {
+"duration": 0.01,
+"texture": SubResource("AtlasTexture_1lypk")
+}],
+"loop": false,
+"name": &"blood",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bb5y3"]
 atlas = ExtResource("2_156ks")
 region = Rect2(0, 0, 48, 32)
@@ -185,62 +238,18 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6548"]
 size = Vector2(23.5, 25.875)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1lypk"]
-atlas = ExtResource("6_156ks")
-region = Rect2(220, 500, 110, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6he5n"]
-atlas = ExtResource("6_156ks")
-region = Rect2(220, 0, 110, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_72mxr"]
-atlas = ExtResource("6_156ks")
-region = Rect2(220, 100, 110, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hlswv"]
-atlas = ExtResource("6_156ks")
-region = Rect2(220, 200, 110, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y4vq7"]
-atlas = ExtResource("6_156ks")
-region = Rect2(220, 300, 110, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sl5hn"]
-atlas = ExtResource("6_156ks")
-region = Rect2(220, 400, 110, 100)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_sl5hn"]
-animations = [{
-"frames": [{
-"duration": 0.01,
-"texture": SubResource("AtlasTexture_1lypk")
-}, {
-"duration": 0.8,
-"texture": SubResource("AtlasTexture_6he5n")
-}, {
-"duration": 0.8,
-"texture": SubResource("AtlasTexture_72mxr")
-}, {
-"duration": 0.8,
-"texture": SubResource("AtlasTexture_hlswv")
-}, {
-"duration": 0.8,
-"texture": SubResource("AtlasTexture_y4vq7")
-}, {
-"duration": 0.8,
-"texture": SubResource("AtlasTexture_sl5hn")
-}, {
-"duration": 0.01,
-"texture": SubResource("AtlasTexture_1lypk")
-}],
-"loop": false,
-"name": &"blood",
-"speed": 5.0
-}]
-
 [node name="Dark Boar" type="CharacterBody2D" unique_id=696404604]
 collision_layer = 4
 script = ExtResource("1_mn0bm")
+
+[node name="BloodSprite2D" type="AnimatedSprite2D" parent="." unique_id=1385389168]
+position = Vector2(-15, -17)
+rotation = 3.1415927
+scale = Vector2(0.6, -0.61)
+sprite_frames = SubResource("SpriteFrames_sl5hn")
+animation = &"blood"
+frame = 6
+frame_progress = 1.0
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1284381159]
 
@@ -248,7 +257,7 @@ script = ExtResource("1_mn0bm")
 position = Vector2(0, -8)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_aohpx")
-animation = &"hit"
+animation = &"idle"
 
 [node name="RayCast" type="RayCast2D" parent="Pivot" unique_id=510978204]
 visible = false
@@ -256,6 +265,7 @@ position = Vector2(0, 1.005)
 target_position = Vector2(22, -0.004999995)
 
 [node name="View" type="Area2D" parent="Pivot" unique_id=1630464821]
+visible = false
 position = Vector2(-11, -3)
 collision_layer = 0
 collision_mask = 2
@@ -271,22 +281,12 @@ position = Vector2(1.5, -4.5)
 shape = SubResource("RectangleShape2D_r6548")
 
 [node name="KillArea2D" type="Area2D" parent="." unique_id=915241367]
-visible = false
 collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea2D" unique_id=1285680894 groups=["enemy"]]
 position = Vector2(4, -5.0625)
 shape = SubResource("RectangleShape2D_r6548")
-
-[node name="BloodParent2D" type="Node2D" parent="." unique_id=639331852]
-
-[node name="BloodSprite2D" type="AnimatedSprite2D" parent="BloodParent2D" unique_id=1385389168]
-position = Vector2(-19.000002, -13)
-rotation = -3.1415925
-scale = Vector2(0.6, -0.61)
-sprite_frames = SubResource("SpriteFrames_sl5hn")
-animation = &"blood"
 
 [connection signal="body_entered" from="Pivot/View" to="." method="_on_aggro_body_entered"]
 [connection signal="body_exited" from="Pivot/View" to="." method="_on_aggro_body_exited"]

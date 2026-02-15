@@ -21,6 +21,9 @@ var momentum: int:
 	get:
 		return RUN_SPEED * WEIGHT
 
+func get_hit_dir():
+	return sign(%Knight.global_position.x - global_position.x)
+
 func receive_damage(damage: int):
 	print(name, " HP: ", HEALTH, " => ", HEALTH - damage)
 	HEALTH -= damage
@@ -30,7 +33,8 @@ func receive_damage(damage: int):
 
 func receive_knockback(knockback_momentum: float):
 	# print(name, " was blocked by " + creature.name)
-	position += Vector2(knockback_momentum / WEIGHT * -direction, 0)
+	var dir = get_hit_dir()
+	position += Vector2(knockback_momentum / WEIGHT * -dir, 0)
 
 func _physics_process(delta: float):
 	pivot.scale.x = direction

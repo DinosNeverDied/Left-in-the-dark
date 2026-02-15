@@ -5,8 +5,9 @@ enum State {IDLE, WALK, RUN, HIT, STUNNED}
 
 @export var STUN_TIME = 0.5
 @onready var raycast: RayCast2D = $Pivot/RayCast
-@onready var aggro: Area2D = $Aggro
-@onready var hitbox: Area2D = $Hitbox
+@onready var killzone: Area2D = $KillArea2D
+@onready var blood_parent: Node2D = $BloodParent2D
+@onready var blood_sprite: AnimatedSprite2D = $BloodParent2D/BloodSprite2D
 
 var state: State = State.WALK
 var idle_timer = IDLE_TIME
@@ -40,8 +41,6 @@ func handle_walk(delta: float) -> void:
 		print("Ray cast front colliding. facing_right = ", facing_right)
 			
 	if is_on_floor():
-		#("direction: " , direction)
-		#print("WALK_SPEED: " , WALK_SPEED)
 		velocity.x = direction * WALK_SPEED
 		animated_sprite.play("walk")
 
@@ -69,7 +68,11 @@ func handle_run() -> void:
 	
 func handle_hit(delta: float) -> void:
 	
+	var hit_direction = get_hit_dir()
+	blood_parent.scale.x = abs(blood_sprite.scale.x) * hit_direction
+	
 	animated_sprite.play("hit")
+	blood_sprite.play("blood")
 	await animated_sprite.animation_finished
 	state = State.RUN if player != null else State.WALK
 	
@@ -116,7 +119,15 @@ func _on_killzone_body_entered(player: Node2D):
 
 func die():
 	
+	velocity.x = 0
+	killzone.monitorable = false
+	killzone.monitoring = false
+	
+	var hit_direction = get_hit_dir()
+	blood_parent.scale.x = abs(blood_sprite.scale.x) * hit_direction
+	
 	animated_sprite.play("hit")
+	blood_sprite.play("blood")
 	await animated_sprite.animation_finished
 	
 	print(name, " died")
