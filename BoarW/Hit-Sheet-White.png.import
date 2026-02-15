@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lele1fp53q6o"
-path="res://.godot/imported/goblinspritesheet.png-d023c1ad42c880c718e6cdf4f04f7bca.ctex"
+uid="uid://655jxi60alfn"
+path="res://.godot/imported/Hit-Sheet-White.png-2c1310cdf6aaf1b3357e26acb23856c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesandtiles/goblinspritesheet.png"
-dest_files=["res://.godot/imported/goblinspritesheet.png-d023c1ad42c880c718e6cdf4f04f7bca.ctex"]
+source_file="res://BoarW/Hit-Sheet-White.png"
+dest_files=["res://.godot/imported/Hit-Sheet-White.png-2c1310cdf6aaf1b3357e26acb23856c5.ctex"]
 
 [params]
 

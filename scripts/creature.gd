@@ -2,8 +2,11 @@ class_name Creature
 extends CharacterBody2D
 
 @export var DAMAGE = 1
-@export var HEALTH = 1
-@export var RUN_SPEED = 80.0
+@export var HEALTH = 3
+@export var WALK_SPEED = 60.0
+@export var RUN_SPEED = 120.0
+@export var IDLE_TIME = 1.5
+@export var KNOCKBACK_FORCE = 220.0
 @export var WEIGHT = 80.0
 
 @onready var pivot: Node2D = $Pivot
@@ -42,4 +45,3 @@ func _physics_process(delta: float):
 func die():
 	print(name, " died")
 	queue_free()
-

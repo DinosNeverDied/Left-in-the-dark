@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lele1fp53q6o"
-path="res://.godot/imported/goblinspritesheet.png-d023c1ad42c880c718e6cdf4f04f7bca.ctex"
+uid="uid://xf6riqxi4aqx"
+path="res://.godot/imported/Idle-Sheet-White.png-f984924213d257bf29c13f664a65956a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesandtiles/goblinspritesheet.png"
-dest_files=["res://.godot/imported/goblinspritesheet.png-d023c1ad42c880c718e6cdf4f04f7bca.ctex"]
+source_file="res://BoarW/Idle-Sheet-White.png"
+dest_files=["res://.godot/imported/Idle-Sheet-White.png-f984924213d257bf29c13f664a65956a.ctex"]
 
 [params]
 
