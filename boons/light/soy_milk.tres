@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Boon" format=3 uid="uid://dklm0oisjbwdd"]
+
+[ext_resource type="Script" uid="uid://d3vkad02h3laj" path="res://scripts/boon.gd" id="1_rghjc"]
+
+[resource]
+script = ExtResource("1_rghjc")
+title = "Soy milk"
+description = "The protein helps up the muscles to hold the shield firmlier for VALUE more blocks."
+type = 3
+value_common = 1.0
+value_rare = 2.0
+value_epic = 3.0

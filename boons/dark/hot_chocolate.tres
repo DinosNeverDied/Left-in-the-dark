@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Boon" format=3 uid="uid://dq6dq2r50ykln"]
+
+[ext_resource type="Script" uid="uid://d3vkad02h3laj" path="res://scripts/boon.gd" id="1_gv27f"]
+
+[resource]
+script = ExtResource("1_gv27f")
+title = "Hot Chocolate"
+description = "Provides the power to strike VALUE x stronger with your sword."
+is_dark = true
+type = 1
+value_common = 1.25
+value_rare = 1.5
+value_epic = 2.0

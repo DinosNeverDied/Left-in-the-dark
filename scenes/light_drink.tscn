@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ds757tweve1uw"]
+
+[ext_resource type="PackedScene" uid="uid://6rgq2dy04osq" path="res://scenes/dark_drink.tscn" id="1_dy8pj"]
+[ext_resource type="Texture2D" uid="uid://cukdto776jsyr" path="res://sprites/milk_small.png" id="2_xutuc"]
+
+[node name="LightDrink" unique_id=1594534621 instance=ExtResource("1_dy8pj")]
+is_dark = false
+
+[node name="Sprite2D" parent="." index="0" unique_id=240497285]
+texture = ExtResource("2_xutuc")

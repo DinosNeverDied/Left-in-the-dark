@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Boon" format=3 uid="uid://dedbsarpir4mm"]
+
+[ext_resource type="Script" uid="uid://d3vkad02h3laj" path="res://scripts/boon.gd" id="1_b4y30"]
+
+[resource]
+script = ExtResource("1_b4y30")
+title = "Espresso"
+description = "You can attack restlessly with VALUE x increased attacking speed after consuming this espresso. "
+is_dark = true
+type = 2
+value_common = 1.25
+value_rare = 1.5
+value_epic = 2.0
