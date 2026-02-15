@@ -20,8 +20,14 @@ func _physics_process(delta: float):
 	super._physics_process(delta)
 
 
+# Todo: Fix and put take_shield_block into Creature
+func take_shield_block(player: Creature):
+	receive_knockback(player.KNOCKBACK_FORCE * 3)
+
+
 func _on_killzone_body_entered(player: CharacterBody2D):
 	if player is not Player:
 		return
 
 	player.receive_damage(DAMAGE)
+

@@ -7,6 +7,7 @@ script = ExtResource("1_gv27f")
 title = "Hot Chocolate"
 description = "Provides the power to strike VALUE x stronger with your sword."
 is_dark = true
+application_type = 1
 type = 1
 value_common = 1.25
 value_rare = 1.5

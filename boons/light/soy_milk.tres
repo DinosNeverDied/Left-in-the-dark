@@ -6,7 +6,8 @@
 script = ExtResource("1_rghjc")
 title = "Soy milk"
 description = "The protein helps up the muscles to hold the shield firmlier for VALUE more blocks."
-type = 3
+application_type = 1
+type = 4
 value_common = 1.0
 value_rare = 2.0
 value_epic = 3.0

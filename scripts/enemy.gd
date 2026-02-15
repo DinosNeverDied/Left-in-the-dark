@@ -14,7 +14,7 @@ var idle_timer = IDLE_TIME
 var stun_timer = STUN_TIME
 var player: Node2D = null
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float):
 	
 	match state:
 		State.IDLE:
@@ -30,10 +30,8 @@ func _physics_process(delta: float) -> void:
 				
 	super._physics_process(delta)
 	
-func _ready() -> void:
-	print("facing_right: ", facing_right)
-	
-func handle_walk(delta: float) -> void:
+
+func handle_walk(delta: float):
 	
 	if raycast.is_colliding():
 		state = State.IDLE
@@ -45,7 +43,7 @@ func handle_walk(delta: float) -> void:
 		animated_sprite.play("walk")
 
 		
-func handle_idle(delta: float) -> void:
+func handle_idle(delta: float):
 	
 	velocity.x = 0
 	animated_sprite.play("idle")
@@ -56,7 +54,7 @@ func handle_idle(delta: float) -> void:
 		state = State.WALK
 
 
-func handle_run() -> void:
+func handle_run():
 	
 	if not player:
 		state = State.WALK
@@ -66,7 +64,8 @@ func handle_run() -> void:
 	velocity.x = direction * RUN_SPEED
 	animated_sprite.play("run")
 	
-func handle_hit(delta: float) -> void:
+
+func handle_hit(delta: float):
 	
 	var hit_direction = get_hit_dir()
 	blood_parent.scale.x = abs(blood_sprite.scale.x) * hit_direction
@@ -76,7 +75,8 @@ func handle_hit(delta: float) -> void:
 	await animated_sprite.animation_finished
 	state = State.RUN if player != null else State.WALK
 	
-func handle_stun(delta: float) -> void:
+
+func handle_stun(delta: float):
 	
 	velocity.x = 0
 	stun_timer -= delta
@@ -86,13 +86,14 @@ func handle_stun(delta: float) -> void:
 		stun_timer = STUN_TIME
 		state = State.RUN if player != null else State.WALK
 
-func take_sword_hit(player: Creature) -> void:
 
+func take_sword_hit(player: Creature):
 	receive_damage(player.DAMAGE)
 	receive_knockback(player.KNOCKBACK_FORCE)
 	state = State.HIT
 	
-func take_shield_block(player: Creature) -> void:
+
+func take_shield_block(player: Creature):
 	
 	receive_knockback(player.KNOCKBACK_FORCE * 3)
 	state = State.STUNNED
@@ -111,11 +112,13 @@ func _on_aggro_body_exited(player: Node2D):
 		self.player = null
 		state = State.WALK
 
+
 func _on_killzone_body_entered(player: Node2D):
 	if player is not Player:
 		return
 
 	player.receive_damage(DAMAGE)
+
 
 func die():
 	

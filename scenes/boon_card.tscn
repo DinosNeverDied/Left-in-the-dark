@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cukdto776jsyr" path="res://sprites/milk_small.png" id="3_j1oqs"]
 
 [node name="BoonCard" type="PanelContainer" unique_id=323196718 node_paths=PackedStringArray("title_node", "description_node", "rarity_node")]
+custom_minimum_size = Vector2(0, 76)
 offset_right = 728.0
 offset_bottom = 50.0
 script = ExtResource("1_k0h6y")

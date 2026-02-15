@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_tbss3")
 title = "Cow Milk"
-description = "This classical milk builds you up and allows you to have VALUE hearts more."
+description = "This milk builds you up and allows you to have VALUE hearts more - immediatly!"
 value_common = 1.0
 value_rare = 2.0
 value_epic = 3.0

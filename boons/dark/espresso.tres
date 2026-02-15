@@ -7,6 +7,7 @@ script = ExtResource("1_b4y30")
 title = "Espresso"
 description = "You can attack restlessly with VALUE x increased attacking speed after consuming this espresso. "
 is_dark = true
+application_type = 1
 type = 2
 value_common = 1.25
 value_rare = 1.5

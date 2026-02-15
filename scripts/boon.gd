@@ -1,20 +1,28 @@
 class_name Boon extends Resource
 
 enum Type { 
-    HEALTH_PLUS, 
-    ATTACK_MULTIPLIER, 
-    ATTACK_SPEED_MULTIPLIER, 
-    SPEED_MULTIPLIER, 
-    SHIELD_STAMINA_PLUS,
-    BLOCK_MOVEMENT_SPEED_MULTIPLIER,
-    LIFESTEAL_CHANCE,
-    BLOCK_KNOCKBACK_MULTIPLIER
+    HEALTH_PLUS, ##
+    ATTACK_DAMAGE_MULTIPLIER, ##
+    ATTACK_SPEED_MULTIPLIER, ##
+    SPEED_MULTIPLIER, ##
+    SHIELD_STAMINA_PLUS, # (impl!)
+    ATTACK_MOVEMENT_SPEED_MULTIPLIER,#
+    BLOCK_MOVEMENT_SPEED_MULTIPLIER,##
+    LIFESTEAL_CHANCE, ##
+    BLOCK_KNOCKBACK_MULTIPLIER, ##
+    BLOCK_DAMAGE #
 }
 
 enum Rarity { 
     COMMON, 
     RARE, 
     EPIC 
+}
+
+enum ApplicationType { 
+    ADD, 
+    MULTIPLY, 
+    ONCE
 }
 
 static var chance_by_rarity = {
@@ -26,6 +34,9 @@ static var chance_by_rarity = {
 @export var title: String
 @export var description: String
 @export var is_dark: bool
+
+# This determines the default value (1 for multiply, 0 for add)
+@export var application_type: ApplicationType
 
 @export var type: Type
 @export var value_common: float

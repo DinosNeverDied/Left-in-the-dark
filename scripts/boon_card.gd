@@ -21,7 +21,6 @@ func load_boon(_boon: Boon):
 
 	title_node.text = boon.title
 	rarity_node.text = Boon.Rarity.keys()[boon.rarity].capitalize()
-	print("Setting rarity text to:", rarity_node.text)
 	description_node.text = process_rarity_text(
 		boon.description.replace("VALUE", str(snapped(boon.value, 0.01))))
 
@@ -30,7 +29,6 @@ func load_boon(_boon: Boon):
 
 
 func _on_choosing_button_pressed():
-	print("PRESSED CHOOSE FOR BOON:", boon.title)
 	get_viewport().set_input_as_handled()
 
 	GameManager.boon_selected.emit(boon)
