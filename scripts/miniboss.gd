@@ -1,9 +1,7 @@
-class_name Enemy
+class_name Miniboss
 extends Creature
 
-enum State {IDLE, WALK, RUN, HIT, STUNNED, DEAD}
-
-@export var STUN_TIME = 0.4
+enum State {IDLE, WALK, RUN, HIT, ATTACK, DEAD}
 
 @onready var raycast: RayCast2D = $Pivot/RayCast
 @onready var aggro: Area2D = $Aggro
@@ -11,7 +9,6 @@ enum State {IDLE, WALK, RUN, HIT, STUNNED, DEAD}
 
 var state: State = State.WALK
 var idle_timer = 0.0
-var stun_timer = STUN_TIME
 var knockback_velocity = Vector2.ZERO
 var player: Node2D = null
 
@@ -24,8 +21,8 @@ func _physics_process(delta: float) -> void:
 			handle_walk(delta)
 		State.RUN:
 			handle_run()
-		State.STUNNED:
-			handle_stunned(delta)
+		State.ATTACK:
+			handle_attack(delta)
 		State.HIT:
 			pass
 		State.DEAD:
@@ -70,20 +67,24 @@ func handle_run() -> void:
 	facing_right = sign(player.global_position.x - global_position.x) > 0
 	velocity.x = direction * RUN_SPEED
 	animated_sprite.play("run")
+	
+	if abs(player.global_position.x - global_position.x) < 50:
+		state = State.ATTACK
 
 	
-func handle_stunned(delta: float) -> void:
+func handle_attack(delta: float) -> void:
 	
-	stun_timer -= delta
-	
-	velocity.x = knockback_velocity.x
-	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 800 * delta)
-	animated_sprite.play("knockback")
-
-	
-	if stun_timer <= 0:
-		stun_timer = STUN_TIME
-		state = State.RUN if player != null else State.WALK
+	match randi() % 2:
+		0:
+			velocity.x = 0
+			animated_sprite.play("attack2")
+			if animated_sprite.animation_finished:
+				state = State.HIT
+		1:
+			velocity.x /= 2
+			animated_sprite.play("attack2b")
+			if animated_sprite.animation_finished:
+				state = State.HIT
 
 
 func _on_aggro_body_entered(body: Node2D):
@@ -92,9 +93,6 @@ func _on_aggro_body_entered(body: Node2D):
 		player = body
 		state = State.RUN
 		
-		
-func _on_aggro_body_exited(body: Node2D):
-	
-	if body == player:
-		player = null
-		state = State.WALK
+func die():
+	animated_sprite.play("death")
+	super.die()
