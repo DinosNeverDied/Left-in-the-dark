@@ -1,8 +1,6 @@
 class_name Player
 extends Creature
 
-signal player_died
-
 @export var SPEED_MULTIPLIER_WHILE_ATTACKING = 0.5
 @export var SPEED_MULTIPLIER_WHILE_BLOCKING = 0.1
 @export var JUMP_VELOCITY = -300.0
@@ -19,6 +17,9 @@ var attacking = false
 var is_flickering = false
 var dead = false
 
+func _ready():
+	GameManager.player_health_changed.emit(self)
+	
 func _physics_process(delta: float):
 
 	if dead:
@@ -69,7 +70,7 @@ func _physics_process(delta: float):
 	
 	if last_animation != animated_sprite.animation:
 		last_animation = animated_sprite.animation
-		print("Animation:", animated_sprite.animation)
+		# print("Animation:", animated_sprite.animation)
 
 	super._physics_process(delta)
 
@@ -98,6 +99,8 @@ func receive_damage(damage: int):
 
 	super.receive_damage(damage)
 
+	GameManager.player_health_changed.emit(self)
+
 	if not dead:
 		start_flickering(1.3, 3)
 
@@ -108,7 +111,7 @@ func die():
 	animated_sprite.play("die")
 	await animated_sprite.animation_finished
 
-	player_died.emit()
+	GameManager.player_died.emit()
 
 
 func start_flickering(time: float, flicker_count: int):
