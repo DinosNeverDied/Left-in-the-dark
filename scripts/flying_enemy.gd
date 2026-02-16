@@ -114,7 +114,7 @@ func take_shield_block(attacker: Creature) -> void:
 func _on_aggro_body_entered(player: Node2D):
 
 	if self.player == null:
-		self.player = player			
+		self.player = player
 		state = State.RUN
 
 func _on_aggro_body_exited(player: Node2D):
@@ -127,7 +127,7 @@ func _on_killzone_body_entered(player: Node2D):
 	if player is not Player:
 		return
 
-	#player.receive_damage(DAMAGE)
+	player.receive_damage(DAMAGE)
 
 func die():
 	

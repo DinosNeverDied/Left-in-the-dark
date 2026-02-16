@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ceyfgtqr0xlnf"]
 
-[ext_resource type="Script" uid="uid://ctj3kxn7on8t5" path="res://scripts/player.gd" id="1_5f346"]
+[ext_resource type="Script" uid="uid://d3qyqjtwagcav" path="res://scripts/boss.gd" id="1_5f346"]
 [ext_resource type="Texture2D" uid="uid://bllbbl60akhxc" path="res://sprites/Knight 2D Pixel Art with_outline - original/ATTACK 1.png" id="2_0onds"]
 [ext_resource type="Texture2D" uid="uid://b28upsuvbek6l" path="res://sprites/Knight 2D Pixel Art with_outline - original/DEFEND.png" id="3_lfs1x"]
 [ext_resource type="Texture2D" uid="uid://5f5ite7id8vf" path="res://sprites/Knight 2D Pixel Art with_outline - original/DEATH.png" id="4_8eiau"]
@@ -489,8 +489,8 @@ _data = {
 
 [node name="Knight" type="CharacterBody2D" unique_id=1341931828 groups=["player"]]
 z_index = 5
-collision_layer = 2
-collision_mask = 7
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_5f346")
 HEALTH = 1
 
@@ -502,7 +502,7 @@ animation = &"attack"
 
 [node name="SwordArea2D" type="Area2D" parent="Pivot" unique_id=1907885349 groups=["player_attack"]]
 collision_layer = 0
-collision_mask = 6
+collision_mask = 2
 
 [node name="SwordCollisionShape" type="CollisionShape2D" parent="Pivot/SwordArea2D" unique_id=899664499]
 position = Vector2(9, 5)
@@ -511,7 +511,7 @@ shape = SubResource("CapsuleShape2D_mvyd6")
 
 [node name="ShieldArea2D" type="Area2D" parent="Pivot" unique_id=1713866127 groups=["player_block"]]
 collision_layer = 0
-collision_mask = 6
+collision_mask = 2
 
 [node name="ShieldCollisionShape" type="CollisionShape2D" parent="Pivot/ShieldArea2D" unique_id=1753740699]
 position = Vector2(4, 4)

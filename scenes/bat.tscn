@@ -567,10 +567,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6548"]
-size = Vector2(16.75, 11.59375)
+size = Vector2(16.75, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_67y1s"]
-size = Vector2(8.25, 30)
+size = Vector2(8.25, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1lypk"]
 atlas = ExtResource("6_p5otw")
@@ -641,13 +641,13 @@ position = Vector2(0, -8)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_aohpx")
 animation = &"walk"
-frame_progress = 0.82856476
+frame_progress = 0.39595902
 
 [node name="RayCast" type="RayCast2D" parent="Pivot" unique_id=510978204]
 target_position = Vector2(19, -0.004999995)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187871853 groups=["enemy"]]
-position = Vector2(-1, -7.796875)
+position = Vector2(-1, -8.5)
 shape = SubResource("RectangleShape2D_r6548")
 
 [node name="KillArea2D" type="Area2D" parent="." unique_id=915241367]
@@ -655,7 +655,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea2D" unique_id=1285680894 groups=["enemy"]]
-position = Vector2(-1, -4)
+position = Vector2(-1, -1.5)
 shape = SubResource("RectangleShape2D_67y1s")
 
 [node name="BloodParent2D" type="Node2D" parent="." unique_id=639331852]

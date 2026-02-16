@@ -30,7 +30,7 @@ func _physics_process(delta):
 
 	knight.move_direction = direction if distance > attack_range else 0
 
-	if target.global_position.y < knight.global_position.y and knight.is_on_floor() and target.is_on_floor():
+	if target.global_position.y < knight.global_position.y - 10 and target.is_on_floor():
 		knight.wants_to_jump = true
 		return
 

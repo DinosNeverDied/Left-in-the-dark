@@ -107,8 +107,7 @@ func _on_sword_body_entered(enemy: CharacterBody2D):
 	if dead or enemy is not Creature:
 		return
 
-	if enemy != self:
-		enemy.take_sword_hit(self)
+	enemy.take_sword_hit(self)
 
 	var lifesteal_chance = GameManager.check_for_boon_value(Boon.Type.LIFESTEAL_CHANCE, 0)
 

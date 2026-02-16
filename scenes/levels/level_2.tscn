@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://cv3dk8ho0xg82" path="res://scenes/levels/dark_exit.tscn" id="2_8qukl"]
 [ext_resource type="PackedScene" uid="uid://b0e0b0t77smh1" path="res://scenes/levels/gametilemap.tscn" id="3_yl73a"]
 [ext_resource type="PackedScene" uid="uid://0dyqpxiehd0p" path="res://scenes/knight.tscn" id="4_xbcdb"]
-[ext_resource type="PackedScene" path="res://scenes/boar.tscn" id="5_7dov7"]
+[ext_resource type="PackedScene" uid="uid://bwtohnaxbcfb3" path="res://scenes/boar.tscn" id="5_7dov7"]
 [ext_resource type="PackedScene" uid="uid://ds757tweve1uw" path="res://scenes/light_drink.tscn" id="5_nt80m"]
-[ext_resource type="PackedScene" path="res://scenes/boar_w.tscn" id="6_3p04p"]
+[ext_resource type="PackedScene" uid="uid://jahrfmmerrop" path="res://scenes/boar_w.tscn" id="6_3p04p"]
 [ext_resource type="PackedScene" uid="uid://blqq7mqxm7fei" path="res://scenes/bat.tscn" id="6_ibugp"]
 [ext_resource type="PackedScene" uid="uid://cqseq1rcfs8q" path="res://scenes/killzone.tscn" id="7_78pok"]
 [ext_resource type="PackedScene" uid="uid://6rgq2dy04osq" path="res://scenes/dark_drink.tscn" id="9_3p04p"]
@@ -43,7 +43,6 @@ tile_map_data = PackedByteArray("AAD7/wAAAAAAAAEAAAACAAAAAAAAAAEAAAD8/wAAAAAAAAE
 [node name="Knight" parent="." unique_id=1019969508 instance=ExtResource("4_xbcdb")]
 unique_name_in_owner = true
 position = Vector2(2, -106)
-HEALTH = 1
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1152259378]
 
