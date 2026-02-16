@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://tb1dbip8pamd"]
+
+[ext_resource type="PackedScene" uid="uid://ceyfgtqr0xlnf" path="res://scenes/boss.tscn" id="1_st43k"]
+[ext_resource type="Script" uid="uid://d3qyqjtwagcav" path="res://scripts/boss.gd" id="2_y87rj"]
+[ext_resource type="Script" uid="uid://57vxrp3wfh30" path="res://scripts/BossAIController.gd" id="3_jrw70"]
+
+[node name="BossKnight" type="Node2D" unique_id=1920882423]
+
+[node name="Knight" parent="." unique_id=1341931828 instance=ExtResource("1_st43k")]
+script = ExtResource("2_y87rj")
+JUMP_VELOCITY = -300.0
+WALK_SPEED = 30.0
+RUN_SPEED = 100.0
+KNOCKBACK_FORCE = 880.0
+WEIGHT = 120.0
+
+[node name="BossAIController" type="Node2D" parent="." unique_id=1163783673]
+script = ExtResource("3_jrw70")

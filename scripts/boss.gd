@@ -1,4 +1,4 @@
-class_name Player
+class_name Boss
 extends Creature
 
 @export var STAMINA = 3
@@ -44,6 +44,10 @@ var attacking = false
 var is_flickering = false
 var dead = false
 
+var wants_to_attack = false
+var wants_to_block = false
+var wants_to_jump = false
+var move_direction = 0.0
 
 func _ready():
 	GameManager.player_health_changed.emit(self)
@@ -60,32 +64,30 @@ func _physics_process(delta: float):
 		super._physics_process(delta)
 		return
 
-	var player_wants_to_attack = Input.is_action_pressed("attack")
-	var player_wants_to_block = Input.is_action_pressed("block")
-	var player_wants_to_jump = Input.is_action_just_pressed("jump")
-	var player_move_direction = Input.get_axis("move_left", "move_right")
-
 	var on_floor = is_on_floor()
-	var moving = player_move_direction != 0
-	var blocking = player_wants_to_block and not attacking
-
+	var moving = move_direction != 0
+	var blocking = wants_to_block and not attacking
+	print(attacking)
 	if moving:
-		facing_right = player_move_direction > 0
+		facing_right = move_direction > 0
 
 	# check for attack stop
 	if attacking and animated_sprite.frame >= animated_sprite.sprite_frames.get_frame_count("attack") - 1:
 		attacking = false
 
 	# handlig jump and gravity
-	if on_floor and player_wants_to_jump:
+	if on_floor and wants_to_jump:
 		velocity.y = JUMP_VELOCITY
+		wants_to_jump = false
 
-	if player_wants_to_attack and not attacking:
+	if wants_to_attack and not attacking:
 		attacking = true
+		wants_to_attack = false
 		animated_sprite.play("attack")
 
 	if blocking:
 		animated_sprite.play("walk" if (moving and on_floor) else "block")
+		wants_to_block = false
 		if not moving and animated_sprite.frame >= animated_sprite.sprite_frames.get_frame_count("block") - 1:
 			animated_sprite.pause()
 

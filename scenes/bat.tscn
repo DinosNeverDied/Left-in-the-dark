@@ -641,7 +641,7 @@ position = Vector2(0, -8)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_aohpx")
 animation = &"walk"
-frame_progress = 0.2439829
+frame_progress = 0.82856476
 
 [node name="RayCast" type="RayCast2D" parent="Pivot" unique_id=510978204]
 target_position = Vector2(19, -0.004999995)
