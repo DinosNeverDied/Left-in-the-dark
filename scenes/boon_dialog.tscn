@@ -4,9 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://b2eghjtqhggtb" path="res://scenes/boon_card.tscn" id="2_dacob"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f65cv"]
-bg_color = Color(0.15294118, 0.105882354, 0.21568628, 0.5019608)
+bg_color = Color(0.15294118, 0.105882354, 0.21568628, 0.8235294)
 
 [sub_resource type="FontFile" id="FontFile_f65cv"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
 cache/0/embolden = 0.0

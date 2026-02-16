@@ -1,10 +1,12 @@
 class_name BoonDialog extends Control
 
-@onready var dark_boons: Array[Boon] = load_boons_from_directory(true)
-@onready var light_boons: Array[Boon] = load_boons_from_directory(false)
+@onready var dark_boons: Array[Boon]
+@onready var light_boons: Array[Boon]
 
 
 func _ready():
+	reload_boons();
+	GameManager.player_died.connect(_on_player_died)
 	GameManager.drink_acquired.connect(_on_drink_acquired)
 	GameManager.boon_selected.connect(_on_boon_selected)
 	visible = false
@@ -37,6 +39,15 @@ func _on_boon_selected(boon: Boon):
 		dark_boons.erase(boon)
 	else:
 		light_boons.erase(boon)
+
+
+func _on_player_died():
+	reload_boons()
+
+
+func reload_boons():
+	dark_boons = load_boons_from_directory(true)
+	light_boons = load_boons_from_directory(false)
 
 
 func load_boons_from_directory(is_dark) -> Array[Boon]:

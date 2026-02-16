@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cv3dk8ho0xg82"]
+
+[ext_resource type="Script" uid="uid://bnick0m4o2pfh" path="res://scenes/levels/level_exit.gd" id="1_cohyv"]
+[ext_resource type="Texture2D" uid="uid://dr2r1niko2lgg" path="res://sprites/cave_entry.png" id="2_6ioyk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_excbq"]
+radius = 9.0
+height = 34.809998
+
+[node name="Exit" type="Area2D" unique_id=620108651]
+scale = Vector2(1.675, 1.675)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_cohyv")
+is_dark_exit = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2109540355]
+texture = ExtResource("2_6ioyk")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1863050451]
+position = Vector2(-1, 8.999999)
+shape = SubResource("CapsuleShape2D_excbq")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=338924582]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
