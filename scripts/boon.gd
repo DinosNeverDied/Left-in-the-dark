@@ -25,12 +25,6 @@ enum ApplicationType {
     ONCE
 }
 
-static var chance_by_rarity = {
-    Boon.Rarity.COMMON: 0.55, 
-    Boon.Rarity.RARE: 0.30, 
-    Boon.Rarity.EPIC: 0.15
-}
-
 @export var title: String
 @export var description: String
 @export var is_dark: bool

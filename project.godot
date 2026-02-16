@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Left in the dark"
-run/main_scene="uid://chfeau6l8dytc"
+run/main_scene="uid://dswi77j3xwly5"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.svg"
 

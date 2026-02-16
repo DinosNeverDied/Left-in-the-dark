@@ -1,12 +1,16 @@
 [gd_scene format=4 uid="uid://chfeau6l8dytc"]
 
 [ext_resource type="Script" uid="uid://dhuq3vdemy0kp" path="res://scripts/level_1.gd" id="1_15wb7"]
+[ext_resource type="PackedScene" uid="uid://cv3dk8ho0xg82" path="res://scenes/levels/dark_exit.tscn" id="2_8qukl"]
 [ext_resource type="PackedScene" uid="uid://b0e0b0t77smh1" path="res://scenes/levels/gametilemap.tscn" id="3_yl73a"]
 [ext_resource type="PackedScene" uid="uid://0dyqpxiehd0p" path="res://scenes/knight.tscn" id="4_xbcdb"]
-[ext_resource type="PackedScene" uid="uid://bwtohnaxbcfb3" path="res://scenes/boar.tscn" id="5_7dov7"]
-[ext_resource type="PackedScene" uid="uid://jahrfmmerrop" path="res://scenes/boar_w.tscn" id="6_3p04p"]
+[ext_resource type="PackedScene" path="res://scenes/boar.tscn" id="5_7dov7"]
+[ext_resource type="PackedScene" uid="uid://ds757tweve1uw" path="res://scenes/light_drink.tscn" id="5_nt80m"]
+[ext_resource type="PackedScene" path="res://scenes/boar_w.tscn" id="6_3p04p"]
 [ext_resource type="PackedScene" uid="uid://blqq7mqxm7fei" path="res://scenes/bat.tscn" id="6_ibugp"]
 [ext_resource type="PackedScene" uid="uid://cqseq1rcfs8q" path="res://scenes/killzone.tscn" id="7_78pok"]
+[ext_resource type="PackedScene" uid="uid://6rgq2dy04osq" path="res://scenes/dark_drink.tscn" id="9_3p04p"]
+[ext_resource type="PackedScene" uid="uid://bcpojan4wi40n" path="res://scenes/levels/light_exit.tscn" id="10_qsp8v"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_binft"]
 normal = Vector2(-0.12535708, -0.99211174)
@@ -14,6 +18,20 @@ distance = -177.55473
 
 [node name="level2" type="Node2D" unique_id=1366298532]
 script = ExtResource("1_15wb7")
+
+[node name="dARKExit" parent="." unique_id=620108651 node_paths=PackedStringArray("drink_to_collect") instance=ExtResource("2_8qukl")]
+position = Vector2(-3289, 724)
+drink_to_collect = NodePath("../DarkDrink")
+
+[node name="DarkDrink" parent="." unique_id=1594534621 instance=ExtResource("9_3p04p")]
+position = Vector2(-3207, 740)
+
+[node name="LightExit" parent="." unique_id=280506604 node_paths=PackedStringArray("drink_to_collect") instance=ExtResource("10_qsp8v")]
+position = Vector2(3300, -339)
+drink_to_collect = NodePath("../LightDrink")
+
+[node name="LightDrink" parent="." unique_id=845530306 instance=ExtResource("5_nt80m")]
+position = Vector2(3207, -313)
 
 [node name="tilemap_background" parent="." unique_id=101838694 instance=ExtResource("3_yl73a")]
 visible = false
