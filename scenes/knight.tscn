@@ -492,7 +492,6 @@ z_index = 5
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_qgb13")
-HEALTH = 1
 
 [node name="Pivot" type="Node2D" parent="." unique_id=803745904]
 

@@ -190,10 +190,11 @@ func _on_boon_added(boon: Boon):
 	elif boon.type == Boon.Type.ATTACK_SPEED_MULTIPLIER:
 		# fps = animationFramesCount * attacking speed (latter is in 1/s)
 		# e.g.  6 frames * 2/s = 12 fps
-		animated_sprite.set_animation_speed(
+		animated_sprite.sprite_frames.set_animation_speed(
 			"attack", 
-			animated_sprite.sprite_frames.get_frame_count("attack") * DEFAULT_ATTACKING_SPEED * GameManager.check_for_boon_value(
-			Boon.Type.ATTACK_SPEED_MULTIPLIER, 1)) 
+			(animated_sprite.sprite_frames.get_frame_count("attack") 
+				* DEFAULT_ATTACKING_SPEED 
+				* GameManager.check_for_boon_value(Boon.Type.ATTACK_SPEED_MULTIPLIER, 1))) 
 
 
 func increase_health(amount: int):

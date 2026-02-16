@@ -25,6 +25,12 @@ func take_shield_block(player: Creature):
 	receive_knockback(player.KNOCKBACK_FORCE * 3)
 
 
+# Todo: Fix and put take_shield_block into Creature
+func take_sword_hit(player: Creature):
+	receive_damage(player.DAMAGE)
+	receive_knockback(player.KNOCKBACK_FORCE)
+
+
 func _on_killzone_body_entered(player: CharacterBody2D):
 	if player is not Player:
 		return
