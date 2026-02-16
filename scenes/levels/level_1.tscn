@@ -39,7 +39,6 @@ drink_to_collect = NodePath("../DarkDrink")
 [node name="LightExit" parent="Other" unique_id=1372485449 node_paths=PackedStringArray("drink_to_collect") instance=ExtResource("8_qxy0u")]
 position = Vector2(287.42, -83)
 drink_to_collect = NodePath("../LightDrink")
-is_dark_exit = false
 
 [node name="Knight" parent="." unique_id=1019969508 instance=ExtResource("1_nt6kk")]
 unique_name_in_owner = true

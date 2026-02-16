@@ -12,12 +12,14 @@ extends Creature
 
 @export var JUMP_VELOCITY = -350.0
 @export var INVULNERABILITY_DURATION = 1.0
+@export var RECHARGE_TIME_PER_STAMINA = 2.0
 
 @onready var dead_audioplayer: AudioStreamPlayer = $AudioStreamPlayer
 @onready var knight_collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var sword_collision_shape: CollisionShape2D = $Pivot/SwordArea2D/SwordCollisionShape
 @onready var shield_collision_shape: CollisionShape2D = $Pivot/ShieldArea2D/ShieldCollisionShape
 @onready var invulnerability_timer: Timer = $InvulnerabilityTimer
+@onready var stamina_recharge_timer: Timer = $StaminaRechargeTimer
 
 var MAX_HEALTH:
 	get:
@@ -49,6 +51,7 @@ func _ready():
 	GameManager.player_health_changed.emit(self)
 	GameManager.player_stamina_changed.emit(self)
 	GameManager.boon_added.connect(_on_boon_added)
+	stamina_recharge_timer.timeout.connect(_on_statmina_stamina_recharge_timer_timeout)
 	
 
 func _physics_process(delta: float):
@@ -67,6 +70,9 @@ func _physics_process(delta: float):
 	var on_floor = is_on_floor()
 	var moving = player_move_direction != 0
 	var blocking = player_wants_to_block and not attacking
+
+	if attacking or blocking:
+		stamina_recharge_timer.start(RECHARGE_TIME_PER_STAMINA)
 
 	if moving:
 		facing_right = player_move_direction > 0
@@ -200,8 +206,16 @@ func increase_health(amount: int):
 	HEALTH = min(HEALTH + amount, MAX_HEALTH)
 	GameManager.player_health_changed.emit(self)
 	
+
 func take_sword_hit(attacker: Creature) -> void:
 	if dead or is_flickering:
 		return
 	super.take_sword_hit(attacker)
 	start_flickering(1.0, 3)
+
+
+func _on_statmina_stamina_recharge_timer_timeout():
+	if STAMINA < MAX_SHIELD_STAMINA:
+		STAMINA += 1
+		GameManager.player_stamina_changed.emit(self)
+		stamina_recharge_timer.start(RECHARGE_TIME_PER_STAMINA)
