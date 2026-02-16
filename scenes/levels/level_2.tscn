@@ -25,6 +25,7 @@ tile_map_data = PackedByteArray("AAD7/wAAAAAAAAEAAAACAAAAAAAAAAEAAAD8/wAAAAAAAAE
 [node name="Knight" parent="." unique_id=1019969508 instance=ExtResource("4_xbcdb")]
 unique_name_in_owner = true
 position = Vector2(2, -106)
+HEALTH = 1
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1152259378]
 

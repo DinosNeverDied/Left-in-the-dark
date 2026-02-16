@@ -95,15 +95,13 @@ func handle_stun(delta: float):
 		state = State.RUN if player != null else State.WALK
 
 
-func take_sword_hit(player: Creature):
-	receive_damage(player.DAMAGE)
-	receive_knockback(player.KNOCKBACK_FORCE)
+func take_sword_hit(attacker: Creature):
+	super.take_sword_hit(attacker)
 	state = State.HIT
 	
 
-func take_shield_block(player: Creature):
-	
-	receive_knockback(player.KNOCKBACK_FORCE * 3)
+func take_shield_block(attacker: Creature):
+	super.take_shield_block(attacker)
 	state = State.STUNNED
 	
 

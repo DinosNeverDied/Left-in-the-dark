@@ -9,6 +9,7 @@
 [node name="Knight" parent="." unique_id=1341931828 instance=ExtResource("1_st43k")]
 script = ExtResource("2_y87rj")
 JUMP_VELOCITY = -300.0
+HEALTH = 5
 WALK_SPEED = 30.0
 RUN_SPEED = 100.0
 KNOCKBACK_FORCE = 880.0

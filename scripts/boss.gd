@@ -59,8 +59,7 @@ func _physics_process(delta: float):
 
 	if dead:
 		velocity.x = 0
-		knight_collision_shape.monitorable = false
-		knight_collision_shape.monitoring = false
+		#knight_collision_shape.disabled
 		super._physics_process(delta)
 		return
 
@@ -110,7 +109,8 @@ func _on_sword_body_entered(enemy: CharacterBody2D):
 	if dead or enemy is not Creature:
 		return
 
-	enemy.take_sword_hit(self)
+	if enemy != self:
+		enemy.take_sword_hit(self)
 
 	var lifesteal_chance = GameManager.check_for_boon_value(Boon.Type.LIFESTEAL_CHANCE, 0)
 
@@ -201,3 +201,9 @@ func _on_boon_added(boon: Boon):
 func increase_health(amount: int):
 	HEALTH = min(HEALTH + amount, MAX_HEALTH)
 	GameManager.player_health_changed.emit(self)
+	
+func take_sword_hit(attacker: Creature) -> void:
+	if dead or is_flickering:
+		return
+	super.take_sword_hit(attacker)
+	start_flickering(1.0, 3)

@@ -103,15 +103,12 @@ func handle_stun(delta: float) -> void:
 		stun_timer = STUN_TIME
 		state = State.RUN
 
-func take_sword_hit(player: Creature) -> void:
-
-	receive_damage(player.DAMAGE)
-	receive_knockback(player.KNOCKBACK_FORCE)
+func take_sword_hit(attacker: Creature) -> void:
+	super.take_sword_hit(attacker)
 	state = State.HIT
 
-func take_shield_block(player: Creature) -> void:
-	
-	receive_knockback(player.KNOCKBACK_FORCE * 1.3)
+func take_shield_block(attacker: Creature) -> void:
+	super.take_shield_block(attacker)
 	state = State.STUNNED
 
 func _on_aggro_body_entered(player: Node2D):

@@ -21,7 +21,7 @@ var momentum: int:
 		return RUN_SPEED * WEIGHT
 
 func get_hit_dir():
-	return sign(%Knight.global_position.x - global_position.x)
+	return sign(get_tree().get_first_node_in_group("player").global_position.x - global_position.x)
 
 func receive_damage(damage: int):
 	print(name, " HP: ", HEALTH, " => ", HEALTH - damage)
@@ -29,6 +29,12 @@ func receive_damage(damage: int):
 	if HEALTH <= 0:
 		die()
 
+func take_sword_hit(attacker: Creature):
+	receive_damage(attacker.DAMAGE)
+	receive_knockback(attacker.KNOCKBACK_FORCE)
+
+func take_shield_block(attacker: Creature):
+	receive_knockback(attacker.KNOCKBACK_FORCE * 3)
 
 func receive_knockback(knockback_momentum: float):
 	# print(name, " was blocked by " + creature.name)
