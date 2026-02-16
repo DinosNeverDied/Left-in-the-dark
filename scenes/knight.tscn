@@ -529,9 +529,12 @@ libraries/ = SubResource("AnimationLibrary_14u3r")
 
 [node name="InvulnerabilityTimer" type="Timer" parent="." unique_id=1790573368]
 
+[node name="StaminaRechargeTimer" type="Timer" parent="." unique_id=994694453]
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=236628599]
 stream = ExtResource("10_3cm67")
 
 [connection signal="body_entered" from="Pivot/SwordArea2D" to="." method="_on_sword_body_entered"]
 [connection signal="body_entered" from="Pivot/ShieldArea2D" to="." method="_on_shield_body_entered"]
 [connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
+[connection signal="timeout" from="StaminaRechargeTimer" to="." method="_on_invulnerability_timer_timeout"]

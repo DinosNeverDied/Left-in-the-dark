@@ -9,7 +9,7 @@ func _on_body_entered(body: Node2D) -> void:
 	audio.play()
 	#reducing the engine time by half on player end wtered
 	%Knight.receive_damage(1)
-a	Engine.time_scale = 0.5
+	Engine.time_scale = 0.5
 	timer.start()
 
 func _on_timer_timeout() -> void:
