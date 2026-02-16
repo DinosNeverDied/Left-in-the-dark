@@ -4,6 +4,12 @@ class_name BoonDialog extends Control
 @onready var light_boons: Array[Boon]
 
 
+static var chance_by_rarity = {
+	Boon.Rarity.COMMON: 0.80, 
+	Boon.Rarity.RARE: 0.00, 
+	Boon.Rarity.EPIC: 0.20
+}
+
 func _ready():
 	reload_boons();
 	GameManager.player_died.connect(_on_player_died)
@@ -71,4 +77,12 @@ func load_boons_from_directory(is_dark) -> Array[Boon]:
 func pick_3_random_boons(is_dark: bool) -> Array[Boon]:
 	var boons = dark_boons if is_dark else light_boons
 	boons.shuffle()
-	return boons.slice(0, 3)
+	var three_boons = boons.slice(0, 3)
+	for boon in three_boons:
+		var added_chance = 0.0
+		for rarity in chance_by_rarity:
+			added_chance += chance_by_rarity[rarity]
+			if randf() < added_chance:
+				boon.rarity = rarity
+				break
+	return three_boons

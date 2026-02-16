@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cv3dk8ho0xg82" path="res://scenes/levels/dark_exit.tscn" id="1_4i5mn"]
 [ext_resource type="Texture2D" uid="uid://bg0sum8olnqam" path="res://sprites/archway.png" id="2_fad6p"]
 
-[node name="Exit" unique_id=620108651 instance=ExtResource("1_4i5mn")]
+[node name="LightExit" unique_id=620108651 instance=ExtResource("1_4i5mn")]
+is_dark_exit = false
 
 [node name="Sprite2D" parent="." index="0" unique_id=2109540355]
 texture = ExtResource("2_fad6p")
